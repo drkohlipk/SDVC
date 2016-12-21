@@ -1,60 +1,95 @@
-CREATE TABLE cities(    --DONE--
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+CREATE TABLE IF NOT EXISTS keywords(
     id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
+    kw VARCHAR(100) NOT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
-    state_id INT NOT NULL,
-    PRIMARY KEY (id, state_id)
-);
+    PRIMARY KEY (id)
+)
+ENGINE = InnoDB;
 
-CREATE TABLE states(    --DONE--
+CREATE TABLE IF NOT EXISTS states(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
     PRIMARY KEY (id)
 )
+ENGINE = InnoDB;
 
-CREATE TABLE zipcodes(  --DONE--
+CREATE TABLE IF NOT EXISTS donation_types(
     id INT NOT NULL AUTO_INCREMENT,
-    code INT NOT NULL,
-    code2 INT NOT NULL,
-    city_id INT NOT NULL,
-    created_at DATETIME NOT NULL,
-    updated_at DATETIME NOT NULL,
-    PRIMARY KEY (id, city_id)
-)
-
-CREATE TABLE reviews(   --DONE--
-    id  INT NOT NULL AUTO_INCREMENT,
-    rating INT NOT NULL, --need to  restrict to a certain range of numbers
-    review TEXT NOT NULL,
-    created_at DATETIME NOT NULL,
-    updated_at DATETIME NOT NULL,
-    vet_id INT NOT NULL,
-    vso_id INT NOT NULL,
-    PRIMARY KEY (id, vet_id, vso_id)
-
-);
-
-CREATE TABLE services(  --DONE--
-    id INT NOT NULL AUTO_INCREMENT,
-    vet_id INT NOT NULL,
-    vso_id INT NOT NULL,
-    created_at DATETIME NOT NULL,
-    updated_at DATETIME NOT NULL,
-    PRIMARY KEY (id, vet_id, vso_id)
-);
-
-CREATE TABLE keywords(  --DONE--
-    id INT NOT NULL AUTO_INCREMENT,
-    kw VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
     PRIMARY KEY (id)
-);
+)
+ENGINE = InnoDB;
 
-CREATE TABLE vets(  --DONE--
+CREATE TABLE IF NOT EXISTS statuses(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    img VARCHAR(255) NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL,
+    PRIMARY KEY (id)
+)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS branches(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    img VARCHAR(255) NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL,
+    PRIMARY KEY (id)
+)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS questions(
+    id INT NOT NULL AUTO_INCREMENT,
+    q VARCHAR(255) NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL,
+    PRIMARY KEY (id)
+)
+ENGINE = InnoDB;
+
+-- All tables without primary keys must be placed at the top of the SQL script
+
+CREATE TABLE IF NOT EXISTS cities(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL,
+    state_id INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (state_id) REFERENCES states(id)
+    -- state_id INT NOT NULL REFERENCES states(id),
+    -- PRIMARY KEY (id, state_id),
+    -- FOREIGN KEY(state_id)
+)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS zipcodes(
+    id INT NOT NULL AUTO_INCREMENT,
+    code INT NOT NULL,
+    code2 INT NULL,
+    city_id INT NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (city_id) REFERENCES cities(id)
+)
+ENGINE = InnoDB;
+
+
+
+
+CREATE TABLE IF NOT EXISTS vets(
     id INT NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
@@ -64,15 +99,17 @@ CREATE TABLE vets(  --DONE--
     branch_id INT NOT NULL,
     service_start DATE NULL,
     service_end DATE NULL,
-    show_info INT DEFAULT 0,  --INT IN PLACE FOR TINYINT
-    admin INT DEFAULT 0,  --INT IN PLACE FOR TINYINT
-    disability_rate INT NOT NULL,
+    show_info INT DEFAULT 0,
+    admin INT DEFAULT 0,
+    disability_rate INT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
-    PRIMARY KEY (id, branch_id)
-);
+    PRIMARY KEY (id),
+    FOREIGN KEY (branch_id) REFERENCES branches(id)
+)
+ENGINE = InnoDB;
 
-CREATE TABLE vsos(
+CREATE TABLE IF NOT EXISTS vsos(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     headline VARCHAR(255) NOT NULL,
@@ -95,77 +132,98 @@ CREATE TABLE vsos(
     status_id INT DEFAULT 1,
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
-    PRIMARY KEY (id, status_id, zip_id, approver_id)
-);
+    PRIMARY KEY (id, status_id),
+    FOREIGN KEY (approver_id) REFERENCES vets(id),
+    FOREIGN KEY (zip_id) REFERENCES zipcodes(id),
+    FOREIGN KEY (status_id) REFERENCES statuses(id)
+)
+ENGINE = InnoDB;
 
-CREATE TABLE donations(
+CREATE TABLE IF NOT EXISTS reviews(
+    id  INT NOT NULL AUTO_INCREMENT,
+    rating INT NOT NULL,
+    review TEXT NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL,
+    vet_id INT NOT NULL,
+    vso_id INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (vet_id) REFERENCES vets(id),
+    FOREIGN KEY (vso_id) REFERENCES vsos(id)
+)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS services(
+    id INT NOT NULL AUTO_INCREMENT,
+    vet_id INT NOT NULL,
+    vso_id INT NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (vso_id) REFERENCES vsos(id),
+    FOREIGN KEY (vet_id) REFERENCES vets(id)
+)
+ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS donations(
     id INT NOT NULL AUTO_INCREMENT,
     vso_id INT NULL,
     vet_id INT NULL,
     donor VARCHAR(255) NULL,
     donor_info VARCHAR(255) NULL,
-    amount INT NOT NULL,
-    type VARCHAR(40) NOT NULL,
+    amount DECIMAL(8,2) NOT NULL,
+    type_id INT NOT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
-    PRIMARY KEY (id, vso_id)
-);
+    PRIMARY KEY (id),
+    FOREIGN KEY (type_id) REFERENCES donation_types(id),
+    FOREIGN KEY (vso_id) REFERENCES vsos(id),
+    FOREIGN KEY (vet_id) REFERENCES vets(id)
+)
+ENGINE = InnoDB;
 
-CREATE TABLE logins(
+CREATE TABLE IF NOT EXISTS logins(
     id INT NOT NULL AUTO_INCREMENT,
     vet_id INT NULL,
     vso_id INT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
-    PRIMARY KEY (id)
-);
+    PRIMARY KEY (id),
+    FOREIGN KEY (vso_id) REFERENCES vsos(id),
+    FOREIGN KEY (vet_id) REFERENCES vets(id)
+)
+ENGINE = InnoDB;
 
-CREATE TABLE endorsements(
+CREATE TABLE IF NOT EXISTS endorsements(
     id INT NOT NULL AUTO_INCREMENT,
     kw_id INT NOT NULL,
     vso_id INT NOT NULL,
     vet_id INT NOT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
-    PRIMARY KEY (id, kw_id, vso_id, vet_id)
-);
-
-CREATE TABLE statuses(
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
-    img VARCHAR(255) NOT NULL,
-    created_at DATETIME NOT NULL,
-    updated_at DATETIME NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE branches(
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    img VARCHAR(255) NOT NULL,
-    created_at DATETIME NOT NULL,
-    updated_at DATETIME NOT NULL,
-);
-
-CREATE TABLE questions(
-    id INT NOT NULL AUTO_INCREMENT,
-    q VARCHAR(255) NOT NULL,
-    created_at DATETIME NOT NULL,
-    updated_at DATETIME NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (vso_id) REFERENCES vsos(id),
+    FOREIGN KEY (vet_id) REFERENCES vets(id),
+    FOREIGN KEY (kw_id) REFERENCES keywords(id)
 )
+ENGINE = InnoDB;
 
-CREATE TABLE answers(
+CREATE TABLE IF NOT EXISTS answers(
     id INT NOT NULL AUTO_INCREMENT,
     vet_id INT NOT NULL,
     q_id INT NOT NULL,
     a VARCHAR(255) NOT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
-    PRIMARY KEY (id, q_id, vet_id)
-);
+    PRIMARY KEY (id),
+    FOREIGN KEY(vet_id) REFERENCES vets(id),
+    FOREIGN KEY(q_id) REFERENCES questions(id)
+)
+ENGINE = InnoDB;
 
-CREATE TABLE comments(
+
+CREATE TABLE IF NOT EXISTS comments(
     id INT NOT NULL AUTO_INCREMENT,
     content TEXT NOT NULL,
     vet_id INT NULL,
@@ -173,5 +231,13 @@ CREATE TABLE comments(
     vso_id INT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
-    PRIMARY KEY(id, vet_id, review_id, vso_id)
-);
+    PRIMARY KEY(id),
+    FOREIGN KEY (review_id) REFERENCES reviews(id),
+    FOREIGN KEY (vet_id) REFERENCES vets(id),
+    FOREIGN KEY (vso_id) REFERENCES vsos(id)
+)
+ENGINE = InnoDB;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
