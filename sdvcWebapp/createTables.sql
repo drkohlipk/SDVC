@@ -164,3 +164,14 @@ CREATE TABLE answers(
     updated_at DATETIME NOT NULL,
     PRIMARY KEY (id, q_id, vet_id)
 );
+
+CREATE TABLE comments(
+    id INT NOT NULL AUTO_INCREMENT,
+    content TEXT NOT NULL,
+    vet_id INT NULL,
+    review_id INT NOT NULL,
+    vso_id INT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL,
+    PRIMARY KEY(id, vet_id, review_id, vso_id)
+);
