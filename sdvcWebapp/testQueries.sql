@@ -1,4 +1,5 @@
 -- contains sql queries for direct usage and templates for the dapper queries
+-- temporary log on changes to .cs models (see comments below)
 
 INSERT INTO states (name, created_at, updated_at)
     VALUES ("California", NOW(), NOW());
@@ -26,4 +27,10 @@ SELECT * FROM vets
 -- Dapper queries:
 
 -- vet creation:
--- query = "INSERT INTO vets (first_name, last_name, phone, email, password, branch_id, service_start, service_end, disability_rate, created_at, updated_at) VALUES (@first_name, @last_name, @phone, @email, @password, @branch, @service_start, @service_end, @disability_rating, NOW(), NOW());"
+-- query = "INSERT INTO vets (first_name, last_name, phone, email, password, branch_id, service_start, service_end, disability_rate, created_at, updated_at) VALUES (@first_name, @last_name, @phone, @email, @password, @branch_id, @service_start, @service_end, @disability_rating, NOW(), NOW());"
+
+-- .cs model changes:
+
+-- Added [table_name]_id int fields to the following models for db CRUD ops
+-- answers, cities, comments, donation, endorsement, login
+-- question, review, service, vets, vsos, zipcode
