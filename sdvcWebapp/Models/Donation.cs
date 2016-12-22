@@ -5,6 +5,7 @@ namespace sdvcWebapp.Models
 {
 	public class Donation : BaseEntity
 	{
+		public int id { get; set; }
 		public double amount { get; set; }
 		public string donor { get; set; }
 		public string donor_info { get; set; }

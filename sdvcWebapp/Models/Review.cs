@@ -5,6 +5,7 @@ namespace sdvcWebapp.Models
 {
 	public class Review : BaseEntity
 	{
+		public int id { get; set; }
 		public int rating { get; set; }
 		public string content { get; set; }
 		public int vet_id { get; set; }

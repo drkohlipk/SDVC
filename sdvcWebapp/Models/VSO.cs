@@ -5,6 +5,7 @@ namespace sdvcWebapp.Models
 {
 	public class VSO : BaseEntity
 	{
+		public int id { get; set; }
 		public string name { get; set; }
 		public string headline { get; set; }
 		public string description { get; set; }
