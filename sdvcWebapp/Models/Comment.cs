@@ -5,6 +5,7 @@ namespace sdvcWebapp.Models
 {
 	public class Comment : BaseEntity
 	{
+		public int id { get; set; }
 		public string content { get; set; }
 		public int vso_id { get; set; }
 		public VSO vso { get; set; }
