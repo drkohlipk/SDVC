@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS questions(
 )
 ENGINE = InnoDB;
 
--- All tables without primary keys must be placed at the top of the SQL script
+-- All tables without foreign keys must be placed at the top of the SQL script
 
 CREATE TABLE IF NOT EXISTS cities(
     id INT NOT NULL AUTO_INCREMENT,
@@ -68,9 +68,6 @@ CREATE TABLE IF NOT EXISTS cities(
     state_id INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (state_id) REFERENCES states(id)
-    -- state_id INT NOT NULL REFERENCES states(id),
-    -- PRIMARY KEY (id, state_id),
-    -- FOREIGN KEY(state_id)
 )
 ENGINE = InnoDB;
 
@@ -85,9 +82,6 @@ CREATE TABLE IF NOT EXISTS zipcodes(
     FOREIGN KEY (city_id) REFERENCES cities(id)
 )
 ENGINE = InnoDB;
-
-
-
 
 CREATE TABLE IF NOT EXISTS vets(
     id INT NOT NULL AUTO_INCREMENT,

@@ -7,7 +7,9 @@ namespace sdvcWebapp.Models
 	{
 		public int rating { get; set; }
 		public string content { get; set; }
+		public int vet_id { get; set; }
 		public Vet vet { get; set; }
+		public int vso_id { get; set; }
 		public VSO vso { get; set; }
 		public ICollections<Comment> comments { get; set; }
 		public Review()
