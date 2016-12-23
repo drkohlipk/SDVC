@@ -14,7 +14,8 @@
     "MySql.Data.Core": "7.0.4-IR-191",
     "Dapper": "1.50.2",
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0"
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+    "React.AspNet": "3.0.0-rc1"
   },
 
   "frameworks": {
