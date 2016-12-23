@@ -5,6 +5,7 @@ namespace sdvcWebapp.Models
 {
 	public class Keyword : BaseEntity
 	{
+		public int id { get; set; }
 		public string kw { get; set; }
 		public ICollections<Endorsement> endorsements { get; set; }
 		public Keyword()

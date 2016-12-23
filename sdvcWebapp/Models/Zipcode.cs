@@ -5,8 +5,10 @@ namespace sdvcWebapp.Models
 {
 	public class Zipcode : BaseEntity
 	{
+		public int id { get; set; }		
 		public int code { get; set; }
 		public int code2 { get; set; }
+		public int city_id { get; set; }
 		public City city { get; set; }
 		public ICollections<VSO> vsos { get; set; }
 		public Zipcode()

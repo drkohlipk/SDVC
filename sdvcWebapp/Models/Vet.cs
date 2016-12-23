@@ -5,6 +5,7 @@ namespace sdvcWebapp.Models
 {
 	public class Vet : BaseEntity
 	{
+		public int id { get; set; }
 		public string first_name { get; set; }
 		public string last_name { get; set; }
 		public string email { get; set; }
@@ -15,6 +16,7 @@ namespace sdvcWebapp.Models
 		public bool show_info { get; set; }
 		public bool admin { get; set; }
 		public int disability_rating { get; set; }
+		public int branch_id { get; set; }
 		public Branch branch { get; set; }
 		public ICollection<Answer> answers { get; set; }
 		public ICollection<VSO> approvals { get; set; }
@@ -24,7 +26,7 @@ namespace sdvcWebapp.Models
 		public ICollection<Endorsement> endorsements { get; set; }
 		public ICollection<Donation> donations { get; set; }
 		public ICollection<Login> logins { get; set; }
-		public Vet() 
+		public Vet()
 		{
 			answers = new List<Answer>();
 			approvals = new List<Approvals>();

@@ -5,6 +5,7 @@ namespace sdvcWebapp.Models
 {
 	public class VSO : BaseEntity
 	{
+		public int id { get; set; }
 		public string name { get; set; }
 		public string headline { get; set; }
 		public string description { get; set; }
@@ -22,16 +23,19 @@ namespace sdvcWebapp.Models
 		public string verifier_email { get; set; }
 		public string website { get; set; }
 		public string password { get; set; }
-		public Vet approver_id { get; set; }
-		public Status status_id { get; set; }
-		public Zip zip_id { get; set; }
+		public int approver_id { get; set; }
+		public Vet approver { get; set; }
+		public int status_id { get; set; }
+		public Status status { get; set; }
+		public int zip_id { get; set; }
+		public Zip zipcode { get; set;}
 		public ICollection<Review> reviews { get; set; }
 		public ICollection<Comment> comments { get; set; }
 		public ICollection<Service> services { get; set; }
 		public ICollection<Endorsement> endorsements { get; set; }
 		public ICollection<Donation> donations { get; set; }
 		public ICollection<Login> logins { get; set; }
-		public VSO() 
+		public VSO()
 		{
 			reviews = new List<Review>();
 			comments = new List<Comment>();
