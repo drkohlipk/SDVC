@@ -28,7 +28,7 @@ namespace sdvcWebapp
             services.AddReact();
             services.AddMvc();
             services.AddSession();
-            services.AddScoped<UserFactory>();
+            // services.AddScoped<UserFactory>();
             services.Configure<MySqlOptions>(Configuration.GetSection("DBInfo"));
         }
 
@@ -51,9 +51,9 @@ namespace sdvcWebapp
             // Browserify or Gulp), you can improve performance by disabling
             // ReactJS.NET's version of Babel and loading the pre-transpiled
             // scripts. Example:
-            //config
+            // config
             //  .SetLoadBabel(false)
-            //  .AddScriptWithoutTransform("~/Scripts/bundle.server.js");
+            //  .AddScriptWithoutTransform("~/js/tutorial.js");
             });
             app.UseStaticFiles();
             app.UseSession();
