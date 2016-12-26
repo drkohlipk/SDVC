@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace sdvcWebapp.Models
@@ -12,7 +11,7 @@ namespace sdvcWebapp.Models
 		public Vet vet { get; set; }
 		public int vso_id { get; set; }
 		public VSO vso { get; set; }
-		public ICollections<Comment> comments { get; set; }
+		public ICollection<Comment> comments { get; set; }
 		public Review()
 		{
 			comments = new List<Comment>();

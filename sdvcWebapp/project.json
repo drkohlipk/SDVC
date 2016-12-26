@@ -5,7 +5,11 @@
       "type": "platform"
     },
     "Microsoft.AspNetCore.Mvc": "1.0.0",
+    "Microsoft.AspNetCore.Mvc.Core": "1.0.0",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0",
+    "Microsoft.Extensions.FileProviders.Physical": "1.0.0",
+    "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.0.0",
+    "Microsoft.Extensions.DependencyInjection": "1.0.0",
     "Microsoft.AspNetCore.Session": "1.0.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
@@ -14,7 +18,9 @@
     "MySql.Data.Core": "7.0.4-IR-191",
     "Dapper": "1.50.2",
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0"
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+    "React.Core": "3.0.0",
+    "React.AspNet": "3.0.0"
   },
 
   "frameworks": {

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace sdvcWebapp.Models
@@ -7,7 +6,7 @@ namespace sdvcWebapp.Models
 	{
 		public int id { get; set; }
 		public string name { get; set; }
-		public ICollections<City> cities { get; set; }
+		public ICollection<City> cities { get; set; }
 		public State()
 		{
 			cities = new List<City>();

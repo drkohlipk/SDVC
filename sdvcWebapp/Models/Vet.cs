@@ -11,8 +11,8 @@ namespace sdvcWebapp.Models
 		public string email { get; set; }
 		public string password { get; set; }
 		public string phone { get; set; }
-		public Date service_start { get; set; }
-		public Date service_end { get; set; }
+		public DateTime service_start { get; set; }
+		public DateTime service_end { get; set; }
 		public bool show_info { get; set; }
 		public bool admin { get; set; }
 		public int disability_rating { get; set; }
@@ -29,7 +29,7 @@ namespace sdvcWebapp.Models
 		public Vet()
 		{
 			answers = new List<Answer>();
-			approvals = new List<Approvals>();
+			approvals = new List<VSO>();
 			reviews = new List<Review>();
 			comments = new List<Comment>();
 			services = new List<Service>();

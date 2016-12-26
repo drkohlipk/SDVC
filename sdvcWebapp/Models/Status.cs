@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace sdvcWebapp.Models
@@ -7,7 +6,7 @@ namespace sdvcWebapp.Models
 	{
 		public int id { get; set; }
 		public string img { get; set; }
-		public ICollections<VSO> vsos { get; set; }
+		public ICollection<VSO> vsos { get; set; }
 		public Status()
 		{
 			vsos = new List<VSO>();

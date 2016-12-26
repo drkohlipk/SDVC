@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace sdvcWebapp.Models
@@ -9,7 +8,7 @@ namespace sdvcWebapp.Models
 		public string name { get; set; }
 		public int state_id { get; set; }
 		public State state { get; set; }
-		public ICollections<Zipcode> zipcodes { get; set; }
+		public ICollection<Zipcode> zipcodes { get; set; }
 		public City()
 		{
 			zipcodes = new List<Zipcode>();
