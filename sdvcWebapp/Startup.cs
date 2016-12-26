@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
-using sdvcWebapp.Factory;
+using sdvcWebapp.Factories;
 
 namespace sdvcWebapp
 {
@@ -25,7 +25,7 @@ namespace sdvcWebapp
             // Add framework services.
             services.AddMvc();
             services.AddSession();
-            services.AddScoped<UserFactory>();
+            services.AddScoped<VetFactory>();
             services.Configure<MySqlOptions>(Configuration.GetSection("DBInfo"));
         }
 

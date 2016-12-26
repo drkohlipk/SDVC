@@ -150,7 +150,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `sdvcWebapp`.`reviews`(
     id  INT NOT NULL AUTO_INCREMENT,
     rating INT NOT NULL,
-    review TEXT NOT NULL,
+    content TEXT NOT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
     vet_id INT NOT NULL,

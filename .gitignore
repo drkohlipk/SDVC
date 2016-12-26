@@ -1,2 +1,6 @@
 project.lock.json
 .DS_Store
+/Factories/*
+sdvcWebapp/Factories/*
+Factories/IFactory.cs
+Factories/UserFactory.cs
