@@ -8,7 +8,7 @@ namespace sdvcWebapp.Models
 		public string name { get; set; }
 		public string headline { get; set; }
 		public string description { get; set; }
-		public string image { get; set; }
+		public string img { get; set; }
 		public string poc_name { get; set; }
 		public string poc_phone { get; set; }
 		public string poc_email { get; set; }

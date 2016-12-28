@@ -4,3 +4,4 @@ project.lock.json
 sdvcWebapp/Factories/*
 Factories/IFactory.cs
 Factories/UserFactory.cs
+settings.json

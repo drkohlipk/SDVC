@@ -5,5 +5,6 @@ namespace sdvcWebapp.Factory
 {
 	public interface IFactory<T> where T : BaseEntity
 	{
+
 	}
 }

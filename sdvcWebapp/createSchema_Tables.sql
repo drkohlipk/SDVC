@@ -21,12 +21,14 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `sdvcWebapp`.`states`(
     id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
+    name VARCHAR(2) NOT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
     PRIMARY KEY (id)
 )
 ENGINE = InnoDB;
+
+
 
 CREATE TABLE IF NOT EXISTS `sdvcWebapp`.`donation_types`(
     id INT NOT NULL AUTO_INCREMENT,
@@ -249,3 +251,64 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+INSERT INTO `sdvcWebapp`.`states` (name, created_at, updated_at) VALUES ("CA", NOW(), NOW());
+
+INSERT INTO `sdvcWebapp`.`cities` (name, state_id, created_at, updated_at) VALUES ("San Diego", 1, NOW(), NOW());
+
+INSERT INTO `sdvcWebapp`.`zipcodes` (code, city_id, created_at, updated_at) VALUES (92101 ,1, NOW(), NOW());
+INSERT INTO `sdvcWebapp`.`zipcodes` (code, city_id, created_at, updated_at) VALUES (92102 ,1, NOW(), NOW());
+INSERT INTO `sdvcWebapp`.`zipcodes` (code, city_id, created_at, updated_at) VALUES (92103 ,1, NOW(), NOW());
+INSERT INTO `sdvcWebapp`.`zipcodes` (code, city_id, created_at, updated_at) VALUES (92104 ,1, NOW(), NOW());
+INSERT INTO `sdvcWebapp`.`zipcodes` (code, city_id, created_at, updated_at) VALUES (92105 ,1, NOW(), NOW());
+
+INSERT INTO `sdvcWebapp`.`keywords` (kw, created_at, updated_at) VALUES ("health insurance", NOW(), NOW());
+INSERT INTO `sdvcWebapp`.`keywords` (kw, created_at, updated_at) VALUES ("life insurance", NOW(), NOW());
+INSERT INTO `sdvcWebapp`.`keywords` (kw, created_at, updated_at) VALUES ("tuition assistance", NOW(), NOW());
+INSERT INTO `sdvcWebapp`.`keywords` (kw, created_at, updated_at) VALUES ("disabilties", NOW(), NOW());
+ 
+INSERT INTO `sdvcWebapp`.`keywords` (kw, created_at, updated_at) VALUES ("religion", NOW(), NOW());
+INSERT INTO `sdvcWebapp`.`keywords` (kw, created_at, updated_at) VALUES ("housing", NOW(), NOW());
+INSERT INTO `sdvcWebapp`.`keywords` (kw, created_at, updated_at) VALUES ("transportation", NOW(), NOW());
+INSERT INTO `sdvcWebapp`.`keywords` (kw, created_at, updated_at) VALUES ("legal aid", NOW(), NOW());
+INSERT INTO `sdvcWebapp`.`keywords` (kw, created_at, updated_at) VALUES ("mental health", NOW(), NOW());
+INSERT INTO `sdvcWebapp`.`keywords` (kw, created_at, updated_at) VALUES ("support group", NOW(), NOW());
+INSERT INTO `sdvcWebapp`.`keywords` (kw, created_at, updated_at) VALUES ("funeral", NOW(), NOW());
+INSERT INTO `sdvcWebapp`.`keywords` (kw, created_at, updated_at) VALUES ("family", NOW(), NOW());
+
+-- SELECT zipcodes.code, cities.name, states.name FROM zipcodes INNER JOIN cities ON zipcodes.city_id=cities.id INNER JOIN states ON cities.state_id=states.id;
+
+INSERT INTO branches (name, img, created_at, updated_at)
+    VALUES ("United States Air Force", "./fake/path/usaf_logo.jpg", NOW(), NOW());
+INSERT INTO branches (name, img, created_at, updated_at)
+    VALUES ("United States Army", "./fake/path/army_logo.jpg", NOW(), NOW());
+INSERT INTO branches (name, img, created_at, updated_at)
+    VALUES ("United States Coast Guard", "./fake/path/coasties_logo.jpg", NOW(), NOW());
+INSERT INTO branches (name, img, created_at, updated_at)
+    VALUES ("United States Marine Corps", "./fake/path/corps_logo.jpg", NOW(), NOW());
+INSERT INTO branches (name, img, created_at, updated_at)
+    VALUES ("United States Navy", "./fake/path/navy_logo.jpg", NOW(), NOW());
+
+INSERT INTO vets (first_name, last_name, phone, email, password, branch_id, created_at, updated_at)
+	VALUES ("John", "Doe", "206-222-2222", "email@email.com", "hashedpw", 4, NOW(), NOW());
+
+INSERT INTO vets (first_name, last_name, phone, email, password, branch_id, created_at, updated_at)
+	VALUES ("John", "Dough", "206-222-2222", "email@email.com", "hashedpw", 1, NOW(), NOW());
+
+INSERT INTO vets (first_name, last_name, phone, email, password, branch_id, created_at, updated_at)
+	VALUES ("John", "Mattis", "206-222-2222", "email@email.com", "hashedpw", 4, NOW(), NOW());
+
+-- Hash the pw, compare to sql query results if so, then add a logins entry for the user
+
+INSERT INTO vets (first_name, last_name, phone, email, password, branch_id, created_at, updated_at, admin)
+	VALUES ("Johnnie", "SDVC", "206-333-1111", "johnnie@sdvc.org", "hashedpw", 4, NOW(), NOW(), 1);
+
+INSERT INTO statuses (name, img, created_at, updated_at) VALUES ("Bronze", "img", NOW(), NOW());
+
+INSERT INTO vsos (name, headline, description, img, poc_name, poc_phone, poc_email, address_1, approved, approver_id, verifier_name, verifier_email, website, password, status_id, zip_id, created_at, updated_at) VALUES ("Name of VSO","VSO's Headline","VSO's description","./fake/path/img.jpeg","VSO Volunteer","444-444-4444","volunteer@vso.org","221B Baker Street",1,4,"Dana VSO","dana@VSO.org","https://nameofvso.org","hashedpw",1,1, NOW(), NOW());
+
+
+-- Admin Queries
+
+-- SELECT branches.name, COUNT(vets.branch_id) "Number of Vets per Branch" FROM vets INNER JOIN branches ON vets.branch_id=branches.id GROUP BY branches.name;
