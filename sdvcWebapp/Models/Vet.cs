@@ -22,7 +22,7 @@ namespace sdvcWebapp.Models
 		public ICollection<Review> reviews { get; set; }
 		public ICollection<Comment> comments { get; set; }
 		public ICollection<Service> services { get; set; }
-		public ICollection<Endorsement> endorsements { get; set; }
+		public ICollection<Vet_Endorsement> vet_endorsements { get; set; }
 		public ICollection<Donation> donations { get; set; }
 		public ICollection<Login> logins { get; set; }
 		public Vet()
@@ -32,7 +32,7 @@ namespace sdvcWebapp.Models
 			reviews = new List<Review>();
 			comments = new List<Comment>();
 			services = new List<Service>();
-			endorsements = new List<Endorsement>();
+			vet_endorsements = new List<Vet_Endorsement>();
 			donations = new List<Donation>();
 			logins = new List<Login>();
 		}
