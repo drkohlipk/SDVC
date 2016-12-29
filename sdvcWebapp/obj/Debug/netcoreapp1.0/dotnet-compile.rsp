@@ -212,7 +212,6 @@
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/Branch.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/City.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/Comment.cs
-/Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/CommentModel.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/Donation.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/Donation_Type.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/Endorsement.cs
@@ -226,6 +225,7 @@
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/State.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/Status.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/Vet.cs
+/Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/Vet_Endorsement.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/VSO.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/Zipcode.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Properties/MySqlOptions.cs

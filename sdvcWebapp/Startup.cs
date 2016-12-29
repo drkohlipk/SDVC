@@ -51,8 +51,8 @@ namespace sdvcWebapp
             // Browserify or Gulp), you can improve performance by disabling
             // ReactJS.NET's version of Babel and loading the pre-transpiled
             // scripts. Example:
-            // config
-            //  .SetLoadBabel(false)
+            config
+             .SetLoadBabel(false);
             //  .AddScriptWithoutTransform("~/js/tutorial.js");
             });
             app.UseStaticFiles();

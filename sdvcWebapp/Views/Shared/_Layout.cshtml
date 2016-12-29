@@ -3,24 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - sdvcWebapp</title>
-    
+    <title>@ViewData["Title"] - SDVCWebapp</title>
+
     <link rel="stylesheet" href=""
             asp-fallback-href="function link() { [native code] }"
             asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-    
+
     <link rel="stylesheet" href="~/css/css_boilerplate.css" />
 </head>
 <body>
-    <main class="eighty center">
+    <main class="fifty center">
         @RenderBody()
     </main>
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
-        <script src="@Url.Content("~/js/tutorial.js")"></script>
-        <!--<script src="~/js/tutorial.jsx" asp-append-version="true"></script>-->
 
     @RenderSection("scripts", required: false)
 </body>
