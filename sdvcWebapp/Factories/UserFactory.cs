@@ -26,7 +26,8 @@
 // 		public User Add(User item)
 //         {
 //             using (IDbConnection dbConnection = Connection) {
-//                 string query = "INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) VALUES (@first_name, @last_name, @email, @password, NOW(), NOW());";
+//                 string query = "INSERT INTO users (first_name, last_name, email, password, created_at, updated_at)
+//                 VALUES (@first_name, @last_name, @email, @password, NOW(), NOW());";
 //                 dbConnection.Open();
 //                 dbConnection.Execute(query, item);
 //                 return dbConnection.Query<User>("SELECT * FROM users WHERE email = @Email;", new {@Email = item.email}).SingleOrDefault();
