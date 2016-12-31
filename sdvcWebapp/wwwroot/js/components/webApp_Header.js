@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Logo from './webApp_Logo';
-import Menu_Exp from './webApp_Menu_Exp';
+import Exit from '../containers/webApp_Exit_Container';
 
 function Header(props) {
 	return (
 		<header>
 			<Logo />
-			<Menu_Exp />
+			<Exit />
 		</header>
 	);
 }

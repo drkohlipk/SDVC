@@ -58,11 +58,17 @@
 
 	var _webApp_Header2 = _interopRequireDefault(_webApp_Header);
 
-	var _webApp_Main = __webpack_require__(181);
+	var _webApp_Main = __webpack_require__(182);
 
 	var _webApp_Main2 = _interopRequireDefault(_webApp_Main);
 
+	var _webApp_Footer = __webpack_require__(189);
+
+	var _webApp_Footer2 = _interopRequireDefault(_webApp_Footer);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var emergency = ["911", "Suicidal Thoughts", "Emergency Counseling"];
 
 	var WebAssistant = _react2.default.createClass({
 		displayName: 'WebAssistant',
@@ -103,7 +109,9 @@
 				'div',
 				null,
 				_react2.default.createElement(_webApp_Header2.default, null),
-				_react2.default.createElement(_webApp_Main2.default, { obj: this.state.KWobj })
+				_react2.default.createElement('div', { className: 'sep' }),
+				_react2.default.createElement(_webApp_Main2.default, { obj: this.state.KWobj }),
+				_react2.default.createElement(_webApp_Footer2.default, null)
 			);
 		}
 	});
@@ -21583,9 +21591,9 @@
 
 	var _webApp_Logo2 = _interopRequireDefault(_webApp_Logo);
 
-	var _webApp_Menu_Exp = __webpack_require__(180);
+	var _webApp_Exit_Container = __webpack_require__(180);
 
-	var _webApp_Menu_Exp2 = _interopRequireDefault(_webApp_Menu_Exp);
+	var _webApp_Exit_Container2 = _interopRequireDefault(_webApp_Exit_Container);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21594,7 +21602,7 @@
 			'header',
 			null,
 			_react2.default.createElement(_webApp_Logo2.default, null),
-			_react2.default.createElement(_webApp_Menu_Exp2.default, null)
+			_react2.default.createElement(_webApp_Exit_Container2.default, null)
 		);
 	}
 
@@ -21613,13 +21621,55 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function Logo() {
-		return _react2.default.createElement("img", { src: "../images/logo.svg", alt: "Logo" });
+		return _react2.default.createElement("img", { src: "../images/logo.svg", alt: "Logo", id: "logo" });
 	}
 
 	module.exports = Logo;
 
 /***/ },
 /* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _webApp_Exit = __webpack_require__(181);
+
+	var _webApp_Exit2 = _interopRequireDefault(_webApp_Exit);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Exit_Container = _react2.default.createClass({
+		displayName: 'Exit_Container',
+
+		getInitialState: function getInitialState() {
+			return null;
+		},
+
+		handleClick: function handleClick(e) {
+			return;
+		},
+
+		handleHover: function handleHover(e) {
+			return;
+		},
+
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				{ className: 'right' },
+				_react2.default.createElement(_webApp_Exit2.default, null)
+			);
+		}
+	});
+
+	module.exports = Exit_Container;
+
+/***/ },
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21630,53 +21680,18 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function Menu_Exp() {
+	function Exit() {
 		return _react2.default.createElement(
-			"ul",
-			null,
-			_react2.default.createElement(
-				"li",
-				null,
-				_react2.default.createElement(
-					"a",
-					{ href: "#" },
-					"Placeholder"
-				)
-			),
-			_react2.default.createElement(
-				"li",
-				null,
-				_react2.default.createElement(
-					"a",
-					{ href: "#" },
-					"Placeholder"
-				)
-			),
-			_react2.default.createElement(
-				"li",
-				null,
-				_react2.default.createElement(
-					"a",
-					{ href: "#" },
-					"Placeholder"
-				)
-			),
-			_react2.default.createElement(
-				"li",
-				null,
-				_react2.default.createElement(
-					"a",
-					{ href: "#" },
-					"Placeholder"
-				)
-			)
+			"button",
+			{ className: "btn btn-imp" },
+			"X"
 		);
 	}
 
-	module.exports = Menu_Exp;
+	module.exports = Exit;
 
 /***/ },
-/* 181 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21689,9 +21704,13 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _webApp_Button_Container = __webpack_require__(182);
+	var _webApp_Button_Container = __webpack_require__(183);
 
 	var _webApp_Button_Container2 = _interopRequireDefault(_webApp_Button_Container);
+
+	var _webApp_Search_Btn_Container = __webpack_require__(185);
+
+	var _webApp_Search_Btn_Container2 = _interopRequireDefault(_webApp_Search_Btn_Container);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21700,9 +21719,16 @@
 
 		render: function render() {
 			return _react2.default.createElement(
-				'main',
-				null,
-				_react2.default.createElement(_webApp_Button_Container2.default, { obj: this.props.obj })
+				'div',
+				{ className: 'center ninety' },
+				_react2.default.createElement(
+					'h1',
+					{ className: 'center' },
+					'What can we help you with today?'
+				),
+				_react2.default.createElement(_webApp_Button_Container2.default, { obj: this.props.obj }),
+				_react2.default.createElement('hr', null),
+				_react2.default.createElement(_webApp_Search_Btn_Container2.default, null)
 			);
 		}
 	});
@@ -21710,7 +21736,7 @@
 	module.exports = Main;
 
 /***/ },
-/* 182 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21719,7 +21745,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _webApp_Button = __webpack_require__(183);
+	var _webApp_Button = __webpack_require__(184);
 
 	var _webApp_Button2 = _interopRequireDefault(_webApp_Button);
 
@@ -21759,7 +21785,7 @@
 	module.exports = Button_Container;
 
 /***/ },
-/* 183 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21773,10 +21799,10 @@
 	function Button(props) {
 		return _react2.default.createElement(
 			"div",
-			{ className: "btn-hldr" },
+			{ id: "btn-hldr" },
 			_react2.default.createElement(
 				"button",
-				{ className: "btn btn-pop", onClick: props.onClick, value: props.val },
+				{ className: "btn btn-pop center", onClick: props.onClick, value: props.val },
 				props.children
 			),
 			_react2.default.createElement(
@@ -21788,6 +21814,275 @@
 	}
 
 	module.exports = Button;
+
+/***/ },
+/* 185 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _webApp_Search_Btn = __webpack_require__(186);
+
+	var _webApp_Search_Btn2 = _interopRequireDefault(_webApp_Search_Btn);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Search_Btn_Container = _react2.default.createClass({
+		displayName: 'Search_Btn_Container',
+
+		getInitialState: function getInitialState() {
+			return null;
+		},
+
+		handleClick: function handleClick(e) {
+			return;
+		},
+
+		render: function render() {
+			return _react2.default.createElement(_webApp_Search_Btn2.default, { onClick: this.handleClick });
+		}
+	});
+
+	module.exports = Search_Btn_Container;
+
+/***/ },
+/* 186 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _search = __webpack_require__(187);
+
+	var _search2 = _interopRequireDefault(_search);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Search_Btn(props) {
+		return _react2.default.createElement(
+			'div',
+			{ id: 'srchBox' },
+			_react2.default.createElement(_search2.default, { id: 'srchI', size: 30, color: '#1d3666' }),
+			_react2.default.createElement('input', { placeholder: 'Try searching instead.' })
+		);
+	}
+
+	module.exports = Search_Btn;
+
+/***/ },
+/* 187 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactIconBase = __webpack_require__(188);
+
+	var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var FaSearch = function FaSearch(props) {
+	    return _react2.default.createElement(
+	        _reactIconBase2.default,
+	        _extends({ viewBox: '0 0 40 40' }, props),
+	        _react2.default.createElement(
+	            'g',
+	            null,
+	            _react2.default.createElement('path', { d: 'm27.2 18.6q0-4.2-2.9-7.1t-7.1-2.9-7 2.9-3 7.1 2.9 7 7.1 3 7.1-3 2.9-7z m11.4 18.5q0 1.2-0.8 2.1t-2 0.8q-1.2 0-2-0.8l-7.7-7.7q-4 2.8-8.9 2.8-3.2 0-6.1-1.3t-5-3.3-3.4-5-1.2-6.1 1.2-6.1 3.4-5.1 5-3.3 6.1-1.2 6.1 1.2 5 3.3 3.4 5.1 1.2 6.1q0 4.9-2.7 8.9l7.6 7.6q0.8 0.9 0.8 2z' })
+	        )
+	    );
+	};
+
+	exports.default = FaSearch;
+
+/***/ },
+/* 188 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) {
+	  for (var i = 1; i < arguments.length; i++) {
+	    var source = arguments[i];for (var key in source) {
+	      if (Object.prototype.hasOwnProperty.call(source, key)) {
+	        target[key] = source[key];
+	      }
+	    }
+	  }return target;
+	};
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { default: obj };
+	}
+
+	function _objectWithoutProperties(obj, keys) {
+	  var target = {};for (var i in obj) {
+	    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+	  }return target;
+	}
+
+	var IconBase = function IconBase(_ref, _ref2) {
+	  var children = _ref.children;
+	  var color = _ref.color;
+	  var size = _ref.size;
+	  var style = _ref.style;
+
+	  var props = _objectWithoutProperties(_ref, ['children', 'color', 'size', 'style']);
+
+	  var _ref2$reactIconBase = _ref2.reactIconBase;
+	  var reactIconBase = _ref2$reactIconBase === undefined ? {} : _ref2$reactIconBase;
+
+	  var computedSize = size || reactIconBase.size || '1em';
+	  return _react2.default.createElement('svg', _extends({
+	    children: children,
+	    fill: 'currentColor',
+	    preserveAspectRatio: 'xMidYMid meet',
+	    height: computedSize,
+	    width: computedSize
+	  }, reactIconBase, props, {
+	    style: _extends({
+	      verticalAlign: 'middle',
+	      color: color || reactIconBase.color
+	    }, reactIconBase.style || {}, style)
+	  }));
+	};
+
+	IconBase.propTypes = {
+	  color: _react.PropTypes.string,
+	  size: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]),
+	  style: _react.PropTypes.object
+	};
+
+	IconBase.contextTypes = {
+	  reactIconBase: _react.PropTypes.shape(IconBase.propTypes)
+	};
+
+	exports.default = IconBase;
+	module.exports = exports['default'];
+
+/***/ },
+/* 189 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(32);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _webApp_Emergency_Container = __webpack_require__(190);
+
+	var _webApp_Emergency_Container2 = _interopRequireDefault(_webApp_Emergency_Container);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Footer() {
+		return _react2.default.createElement(
+			'footer',
+			null,
+			_react2.default.createElement(
+				'a',
+				{ href: '#' },
+				'\u2190Back'
+			),
+			_react2.default.createElement(_webApp_Emergency_Container2.default, null)
+		);
+	}
+
+	module.exports = Footer;
+
+/***/ },
+/* 190 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _webApp_Emergency = __webpack_require__(191);
+
+	var _webApp_Emergency2 = _interopRequireDefault(_webApp_Emergency);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Emergency_Container = _react2.default.createClass({
+		displayName: 'Emergency_Container',
+
+		getInitialState: function getInitialState() {
+			return null;
+		},
+
+		handleClick: function handleClick(e) {
+			return;
+		},
+
+		handleHover: function handleHover(e) {
+			return;
+		},
+
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				{ className: 'right' },
+				_react2.default.createElement(_webApp_Emergency2.default, null)
+			);
+		}
+	});
+
+	module.exports = Emergency_Container;
+
+/***/ },
+/* 191 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Emergency() {
+		return _react2.default.createElement(
+			"a",
+			{ href: "#" },
+			"Emergency Services"
+		);
+	}
+
+	module.exports = Emergency;
 
 /***/ }
 /******/ ]);
