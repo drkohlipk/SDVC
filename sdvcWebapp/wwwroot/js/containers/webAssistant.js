@@ -9,8 +9,8 @@ let emergency = ["911", "Suicidal Thoughts", "Emergency Counseling"];
 var WebAssistant = React.createClass({
 	getInitialState: function() {
 		return { 
-			KWobj : 'test',
-			currCat : 'test'
+			KWobj : '',
+			currObj : ''
 	 	};
 	},
 
@@ -29,9 +29,16 @@ var WebAssistant = React.createClass({
 		this.XHR('/js/AG_Keywords.json', function(response) {
 			var obj = JSON.parse(response);
 			this.setState({
-				KWobj : obj
+				KWobj : obj,
+				currObj : obj
 			});
 		}.bind(this));
+	},
+
+	setCurrObj: function(obj) {
+		this.setState({
+			currObj : obj
+		});
 	},
 
 	componentWillMount: function() {
@@ -43,7 +50,10 @@ var WebAssistant = React.createClass({
 			<div>
 				<Header />
 				<div className="sep"></div>
-				<Main obj={this.state.KWobj} />
+				<Main 
+					obj={this.state.currObj} 
+					setObj={this.setCurrObj} 
+				/>
 				<Footer />
 			</div>
 		);

@@ -75,8 +75,8 @@
 
 		getInitialState: function getInitialState() {
 			return {
-				KWobj: 'test',
-				currCat: 'test'
+				KWobj: '',
+				currObj: ''
 			};
 		},
 
@@ -95,9 +95,16 @@
 			this.XHR('/js/AG_Keywords.json', function (response) {
 				var obj = JSON.parse(response);
 				this.setState({
-					KWobj: obj
+					KWobj: obj,
+					currObj: obj
 				});
 			}.bind(this));
+		},
+
+		setCurrObj: function setCurrObj(obj) {
+			this.setState({
+				currObj: obj
+			});
 		},
 
 		componentWillMount: function componentWillMount() {
@@ -110,7 +117,10 @@
 				null,
 				_react2.default.createElement(_webApp_Header2.default, null),
 				_react2.default.createElement('div', { className: 'sep' }),
-				_react2.default.createElement(_webApp_Main2.default, { obj: this.state.KWobj }),
+				_react2.default.createElement(_webApp_Main2.default, {
+					obj: this.state.currObj,
+					setObj: this.setCurrObj
+				}),
 				_react2.default.createElement(_webApp_Footer2.default, null)
 			);
 		}
@@ -21649,19 +21659,24 @@
 			return null;
 		},
 
-		handleClick: function handleClick(e) {
-			return;
-		},
-
-		handleHover: function handleHover(e) {
-			return;
+		handleClick: function handleClick() {
+			var app = document.getElementById('app');
+			var overlay = document.getElementById('overlay');
+			if (overlay.style.display == "block") {
+				overlay.style.display = "none";
+				app.style.display = "none";
+			} else {
+				overlay.style.opacity = .8;
+				overlay.style.display = "block";
+				app.style.display = "block";
+			}
 		},
 
 		render: function render() {
 			return _react2.default.createElement(
 				'div',
 				{ className: 'right' },
-				_react2.default.createElement(_webApp_Exit2.default, null)
+				_react2.default.createElement(_webApp_Exit2.default, { onClick: this.handleClick })
 			);
 		}
 	});
@@ -21680,11 +21695,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function Exit() {
+	function Exit(props) {
 		return _react2.default.createElement(
 			"button",
-			{ className: "btn btn-imp" },
-			"X"
+			{ className: "btn btn-imp", onClick: props.onClick },
+			"x"
 		);
 	}
 
@@ -21708,9 +21723,9 @@
 
 	var _webApp_Button_Container2 = _interopRequireDefault(_webApp_Button_Container);
 
-	var _webApp_Search_Btn_Container = __webpack_require__(185);
+	var _webApp_Search_Container = __webpack_require__(185);
 
-	var _webApp_Search_Btn_Container2 = _interopRequireDefault(_webApp_Search_Btn_Container);
+	var _webApp_Search_Container2 = _interopRequireDefault(_webApp_Search_Container);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21726,9 +21741,12 @@
 					{ className: 'center' },
 					'What can we help you with today?'
 				),
-				_react2.default.createElement(_webApp_Button_Container2.default, { obj: this.props.obj }),
+				_react2.default.createElement(_webApp_Button_Container2.default, {
+					obj: this.props.obj,
+					setObj: this.props.setObj
+				}),
 				_react2.default.createElement('hr', null),
-				_react2.default.createElement(_webApp_Search_Btn_Container2.default, null)
+				_react2.default.createElement(_webApp_Search_Container2.default, null)
 			);
 		}
 	});
@@ -21755,11 +21773,21 @@
 		displayName: 'Button_Container',
 
 		getInitialState: function getInitialState() {
-			return null;
+			return {
+				bottom: false
+			};
 		},
 
 		handleClick: function handleClick(e) {
-			return;
+			var val = e.target.value,
+			    newObj = this.props.obj[val];
+			if (Array.isArray(newObj)) {
+				this.setState({ bottom: true });
+				this.props.setObj(newObj);
+			} else {
+				this.setState({ bottom: false });
+				this.props.setObj(newObj);
+			}
 		},
 
 		handleHover: function handleHover(e) {
@@ -21767,13 +21795,25 @@
 		},
 
 		render: function render() {
-			var buttons = Object.keys(this.props.obj).map(function (key, index) {
-				return _react2.default.createElement(
-					_webApp_Button2.default,
-					{ onClick: this.handleClick, onHover: this.handleHover, val: key },
-					key
-				);
-			}.bind(this));
+			if (!this.state.bottom) {
+				var buttons = Object.keys(this.props.obj).map(function (key, index) {
+					return _react2.default.createElement(
+						_webApp_Button2.default,
+						{ onClick: this.handleClick, onHover: this.handleHover, key: key, theKey: key, val: key },
+						key
+					);
+				}.bind(this));
+			} else {
+				var arr = this.props.obj;
+				console.log;
+				var buttons = arr.map(function (key, i) {
+					return _react2.default.createElement(
+						_webApp_Button2.default,
+						{ onClick: this.handleClick, onHover: this.handleHover, key: key, theKey: key, val: key },
+						key
+					);
+				}.bind(this));
+			}
 			return _react2.default.createElement(
 				'div',
 				null,
@@ -21802,12 +21842,12 @@
 			{ id: "btn-hldr" },
 			_react2.default.createElement(
 				"button",
-				{ className: "btn btn-pop", onClick: props.onClick, value: props.val },
+				{ className: "btn btn-pop", onClick: props.onClick, value: props.val, key: props.theKey + '_btn' },
 				props.children
 			),
 			_react2.default.createElement(
 				"span",
-				{ onHover: props.onHover },
+				{ onHover: props.onHover, key: props.theKey + '_span' },
 				"\u2139"
 			)
 		);
@@ -21825,14 +21865,14 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _webApp_Search_Btn = __webpack_require__(186);
+	var _webApp_Search = __webpack_require__(186);
 
-	var _webApp_Search_Btn2 = _interopRequireDefault(_webApp_Search_Btn);
+	var _webApp_Search2 = _interopRequireDefault(_webApp_Search);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Search_Btn_Container = _react2.default.createClass({
-		displayName: 'Search_Btn_Container',
+	var Search_Container = _react2.default.createClass({
+		displayName: 'Search_Container',
 
 		getInitialState: function getInitialState() {
 			return null;
@@ -21843,11 +21883,11 @@
 		},
 
 		render: function render() {
-			return _react2.default.createElement(_webApp_Search_Btn2.default, { onClick: this.handleClick });
+			return _react2.default.createElement(_webApp_Search2.default, { onClick: this.handleClick });
 		}
 	});
 
-	module.exports = Search_Btn_Container;
+	module.exports = Search_Container;
 
 /***/ },
 /* 186 */
@@ -21865,7 +21905,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function Search_Btn(props) {
+	function Search(props) {
 		return _react2.default.createElement(
 			'div',
 			{ id: 'srchBox' },
@@ -21874,7 +21914,7 @@
 		);
 	}
 
-	module.exports = Search_Btn;
+	module.exports = Search;
 
 /***/ },
 /* 187 */

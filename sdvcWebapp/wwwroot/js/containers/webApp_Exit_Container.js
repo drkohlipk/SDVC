@@ -6,18 +6,23 @@ var Exit_Container = React.createClass({
 		return null;
 	},
 
-	handleClick: function(e) {
-		return;
-	},
-
-	handleHover: function(e) {
-		return;
+	handleClick: function() {
+		var app = document.getElementById('app');
+		var overlay = document.getElementById('overlay');
+		if(overlay.style.display == "block"){
+			overlay.style.display = "none";
+			app.style.display = "none";
+		} else {
+			overlay.style.opacity = .8;
+			overlay.style.display = "block";
+			app.style.display = "block";
+		}
 	},
 	
 	render: function() {
 		return (
 			<div className="right">
-				<Exit/>
+				<Exit onClick={this.handleClick} />
 			</div>
 		);
 	}

@@ -1,7 +1,7 @@
 import React from 'react';
 import FaSearch from 'react-icons/fa/search';
 
-function Search_Btn(props) {
+function Search(props) {
 	return (
 		<div id="srchBox">
 			<FaSearch id="srchI" size={23} color='#1d3666' />
@@ -10,4 +10,4 @@ function Search_Btn(props) {
 	);
 }
 
-module.exports = Search_Btn;
+module.exports = Search;
