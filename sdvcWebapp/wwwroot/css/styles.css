@@ -109,9 +109,9 @@ a {
 .btn-imp {
 	background: linear-gradient(lightgray, #ac1f23 30%);
 	color: white;
-	padding: 3px;
-	width: 1.5em;
-	height: 1.5em;
+	padding: 1.5px;
+	width: 1.3em;
+	height: 1.3em;
 	text-align: center;
 }
 
@@ -169,12 +169,27 @@ hr:after {
 	text-align: center;
 }
 
+#btn-hldr > button {
+	margin-left: 10px;
+}
+
 #btn-hldr > span {
+	width: 10px;
+	height: 10px;
 	margin-left: 5px;
+	padding: 1.5px 5px;
+	border: 1px solid gray;
+	border-radius: 50%;
+	box-shadow: 1px 1px 5px gray;
+	text-align: center;
 }
 
 #srchBox > input {
 	margin-left: 10px;
+	margin-right: 31px;
+	width: 170px;
 	border-radius: 5px;
 	border: 1px solid lightgray;
+	text-align: center;
+	vertical-align: middle;
 }

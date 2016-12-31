@@ -4,7 +4,7 @@ import Header from '../components/webApp_Header';
 import Main from './webApp_Main';
 import Footer from '../components/webApp_Footer';
 
-let emergency = ["911", "Suicidal Thoughts", "Emergency Counseling"]
+let emergency = ["911", "Suicidal Thoughts", "Emergency Counseling"];
 
 var WebAssistant = React.createClass({
 	getInitialState: function() {

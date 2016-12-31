@@ -21802,7 +21802,7 @@
 			{ id: "btn-hldr" },
 			_react2.default.createElement(
 				"button",
-				{ className: "btn btn-pop center", onClick: props.onClick, value: props.val },
+				{ className: "btn btn-pop", onClick: props.onClick, value: props.val },
 				props.children
 			),
 			_react2.default.createElement(
@@ -21869,8 +21869,8 @@
 		return _react2.default.createElement(
 			'div',
 			{ id: 'srchBox' },
-			_react2.default.createElement(_search2.default, { id: 'srchI', size: 30, color: '#1d3666' }),
-			_react2.default.createElement('input', { placeholder: 'Try searching instead.' })
+			_react2.default.createElement(_search2.default, { id: 'srchI', size: 23, color: '#1d3666' }),
+			_react2.default.createElement('input', { placeholder: 'Try searching instead' })
 		);
 	}
 
@@ -22012,7 +22012,7 @@
 			_react2.default.createElement(
 				'a',
 				{ href: '#' },
-				'\u2190Back'
+				'\u2190 Back'
 			),
 			_react2.default.createElement(_webApp_Emergency_Container2.default, null)
 		);

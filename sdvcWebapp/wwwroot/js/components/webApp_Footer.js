@@ -5,7 +5,7 @@ import Emergency from '../containers/webApp_Emergency_Container';
 function Footer() {
 	return (
 		<footer>
-			<a href="#">&larr;Back</a>
+			<a href="#">&larr; Back</a>
 			<Emergency />
 		</footer>
 	);
