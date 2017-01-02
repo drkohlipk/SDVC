@@ -3,6 +3,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: sans-serif;
+	color: #1d3666;
 }
 
 main {
@@ -35,11 +36,6 @@ input, textarea {
 h1 {
 	margin: 20px 0 10px;
 	text-align: center;
-	color: #1d3666;
-}
-
-a {
-	color: #1d3666;
 }
 
 .ten {
@@ -112,6 +108,7 @@ a {
 	padding: 1.5px;
 	width: 1.3em;
 	height: 1.3em;
+	margin: 0;
 	text-align: center;
 }
 
@@ -140,25 +137,6 @@ a {
 	background: linear-gradient(120deg, #1d3666 50%, white, #1d3666 80%);
 }
 
-hr {
-	width: 100%;
-	height: 1px;
-	margin: 30px 0;
-    padding: 0;
-    border: none;
-	background: -webkit-linear-gradient(left, rgba(29,54,102,0), rgba(29,54,102,.75), rgba(29,54,102,0));
-    text-align: center;
-}
-
-hr:after {
-    display: inline-block;
-    position: relative;
-    top: -0.4em;
-    font-size: 1.5em;
-    padding: 0 0.25em;
-	content: url("../images/Small_logo.png");
-}
-
 div#overlay {
 	display: none;
 	z-index: 2;
@@ -184,6 +162,16 @@ main#app {
 	height: auto;
 }
 
+.navig {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#headline p {
+	display: block;
+	text-align: center;
+}
+
 #btn-hldr, #srchBox {
 	width: 100%;
 	text-align: center;
@@ -193,15 +181,72 @@ main#app {
 	margin-left: 25px;
 }
 
-#btn-hldr > span {
-	width: 10px;
-	height: 10px;
+span.info {
+	width: 20px;
+	height: 20px;
 	margin-left: 5px;
-	padding: 1.5px 5px;
 	border: 1px solid gray;
 	border-radius: 50%;
 	box-shadow: 1px 1px 5px gray;
+	position: relative;
 	text-align: center;
+	display: inline-block;
+    cursor: pointer;
+}
+
+span.hoverable {
+    background: #F8F8F8;
+    border: 5px solid #DFDFDF;
+    color: #717171;
+    font-size: 13px;
+    height: 40px;
+	width: 200px;
+    letter-spacing: 1px;
+    position: absolute;
+    text-align: center;
+    top: -50px;
+    left: -490%;
+    display: none;
+    padding: 10px 20px;
+}
+
+span.hoverable:after {
+    content: '';
+    position: absolute;
+    bottom: -10px; 
+    width: 10px;
+    height: 10px;
+    border-bottom: 5px solid #dfdfdf;
+    border-right: 5px solid #dfdfdf;
+    background: #f8f8f8;
+    left: 50%;
+    margin-left: -10px;
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+span.info:hover span.hoverable {
+    display: inline-block;
+}
+
+hr {
+	width: 100%;
+	height: 1px;
+	margin: 30px 0;
+    padding: 0;
+    border: none;
+	background: -webkit-linear-gradient(left, rgba(29,54,102,0), rgba(29,54,102,.75), rgba(29,54,102,0));
+    text-align: center;
+}
+
+hr:after {
+    display: inline-block;
+    position: relative;
+    top: -0.4em;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+	content: url("../images/Small_logo.png");
 }
 
 #srchBox > input {
@@ -213,3 +258,4 @@ main#app {
 	text-align: center;
 	vertical-align: middle;
 }
+

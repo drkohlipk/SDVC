@@ -1,6 +1,9 @@
 using sdvcWebapp.Models;
-using System.Collections.Generic;
-public interface IKeywordRepository : IBaseRepository<Keyword>
+
+namespace sdvcWebapp.Repository
 {
-    Keyword FindByText();
+    public interface IKeywordRepository : IBaseRepository<Keyword>
+    {
+        Keyword FindByText();
+    }
 }

@@ -10,7 +10,8 @@ var WebAssistant = React.createClass({
 	getInitialState: function() {
 		return { 
 			KWobj : '',
-			currObj : ''
+			currObj : '',
+			nav : []
 	 	};
 	},
 
@@ -41,6 +42,14 @@ var WebAssistant = React.createClass({
 		});
 	},
 
+	addNav: function(kw) {
+		var arr = this.state.nav;
+		arr.push(kw);
+		this.setState({
+			nav : arr
+		});
+	},
+
 	componentWillMount: function() {
 		this.loadKWFromServer();
 	},
@@ -51,8 +60,10 @@ var WebAssistant = React.createClass({
 				<Header />
 				<div className="sep"></div>
 				<Main 
-					obj={this.state.currObj} 
-					setObj={this.setCurrObj} 
+					obj={this.state.currObj}
+					nav={this.state.nav}
+					setObj={this.setCurrObj}
+					addNav={this.addNav}
 				/>
 				<Footer />
 			</div>

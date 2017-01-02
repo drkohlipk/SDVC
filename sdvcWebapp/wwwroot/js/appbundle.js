@@ -62,7 +62,7 @@
 
 	var _webApp_Main2 = _interopRequireDefault(_webApp_Main);
 
-	var _webApp_Footer = __webpack_require__(189);
+	var _webApp_Footer = __webpack_require__(190);
 
 	var _webApp_Footer2 = _interopRequireDefault(_webApp_Footer);
 
@@ -76,7 +76,8 @@
 		getInitialState: function getInitialState() {
 			return {
 				KWobj: '',
-				currObj: ''
+				currObj: '',
+				nav: []
 			};
 		},
 
@@ -107,6 +108,14 @@
 			});
 		},
 
+		addNav: function addNav(kw) {
+			var arr = this.state.nav;
+			arr.push(kw);
+			this.setState({
+				nav: arr
+			});
+		},
+
 		componentWillMount: function componentWillMount() {
 			this.loadKWFromServer();
 		},
@@ -119,7 +128,9 @@
 				_react2.default.createElement('div', { className: 'sep' }),
 				_react2.default.createElement(_webApp_Main2.default, {
 					obj: this.state.currObj,
-					setObj: this.setCurrObj
+					nav: this.state.nav,
+					setObj: this.setCurrObj,
+					addNav: this.addNav
 				}),
 				_react2.default.createElement(_webApp_Footer2.default, null)
 			);
@@ -21727,6 +21738,10 @@
 
 	var _webApp_Search_Container2 = _interopRequireDefault(_webApp_Search_Container);
 
+	var _webApp_Headline = __webpack_require__(189);
+
+	var _webApp_Headline2 = _interopRequireDefault(_webApp_Headline);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Main = _react2.default.createClass({
@@ -21737,13 +21752,14 @@
 				'div',
 				{ className: 'center ninety' },
 				_react2.default.createElement(
-					'h1',
-					{ className: 'center' },
-					'What can we help you with today?'
+					_webApp_Headline2.default,
+					null,
+					this.props.nav
 				),
 				_react2.default.createElement(_webApp_Button_Container2.default, {
 					obj: this.props.obj,
-					setObj: this.props.setObj
+					setObj: this.props.setObj,
+					addNav: this.props.addNav
 				}),
 				_react2.default.createElement('hr', null),
 				_react2.default.createElement(_webApp_Search_Container2.default, null)
@@ -21781,17 +21797,13 @@
 		handleClick: function handleClick(e) {
 			var val = e.target.value,
 			    newObj = this.props.obj[val];
+			this.props.setObj(newObj);
+			this.props.addNav(val);
 			if (Array.isArray(newObj)) {
 				this.setState({ bottom: true });
-				this.props.setObj(newObj);
 			} else {
 				this.setState({ bottom: false });
-				this.props.setObj(newObj);
 			}
-		},
-
-		handleHover: function handleHover(e) {
-			return;
 		},
 
 		render: function render() {
@@ -21799,17 +21811,16 @@
 				var buttons = Object.keys(this.props.obj).map(function (key, index) {
 					return _react2.default.createElement(
 						_webApp_Button2.default,
-						{ onClick: this.handleClick, onHover: this.handleHover, key: key, theKey: key, val: key },
+						{ onClick: this.handleClick, key: key, theKey: key, val: key },
 						key
 					);
 				}.bind(this));
 			} else {
 				var arr = this.props.obj;
-				console.log;
 				var buttons = arr.map(function (key, i) {
 					return _react2.default.createElement(
 						_webApp_Button2.default,
-						{ onClick: this.handleClick, onHover: this.handleHover, key: key, theKey: key, val: key },
+						{ onClick: this.handleClick, key: key, theKey: key, val: key },
 						key
 					);
 				}.bind(this));
@@ -21847,8 +21858,13 @@
 			),
 			_react2.default.createElement(
 				"span",
-				{ onHover: props.onHover, key: props.theKey + '_span' },
-				"\u2139"
+				{ className: "info", key: props.theKey + '_span' },
+				"\u2139",
+				_react2.default.createElement(
+					"span",
+					{ className: "hoverable" },
+					"Descriptive Material Here"
+				)
 			)
 		);
 	}
@@ -22029,6 +22045,49 @@
 /* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Headline(props) {
+		var navig = props.children.map(function (key, i) {
+			return _react2.default.createElement(
+				"span",
+				null,
+				_react2.default.createElement(
+					"span",
+					{ className: "navig", key: key },
+					key
+				),
+				"\xA0>\xA0"
+			);
+		});
+		return _react2.default.createElement(
+			"div",
+			{ id: "headline", className: "ninety center" },
+			_react2.default.createElement(
+				"h1",
+				{ className: "center" },
+				"What can we help you with today?"
+			),
+			_react2.default.createElement(
+				"p",
+				null,
+				navig
+			)
+		);
+	}
+
+	module.exports = Headline;
+
+/***/ },
+/* 190 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	var _react = __webpack_require__(1);
@@ -22039,7 +22098,7 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _webApp_Emergency_Container = __webpack_require__(190);
+	var _webApp_Emergency_Container = __webpack_require__(191);
 
 	var _webApp_Emergency_Container2 = _interopRequireDefault(_webApp_Emergency_Container);
 
@@ -22061,7 +22120,7 @@
 	module.exports = Footer;
 
 /***/ },
-/* 190 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22070,7 +22129,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _webApp_Emergency = __webpack_require__(191);
+	var _webApp_Emergency = __webpack_require__(192);
 
 	var _webApp_Emergency2 = _interopRequireDefault(_webApp_Emergency);
 
@@ -22103,7 +22162,7 @@
 	module.exports = Emergency_Container;
 
 /***/ },
-/* 191 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
