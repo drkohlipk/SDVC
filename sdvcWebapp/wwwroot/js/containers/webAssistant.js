@@ -50,6 +50,32 @@ var WebAssistant = React.createClass({
 		});
 	},
 
+	useHL: function(idx) {
+		var arr = this.state.nav,
+			obj = this.state.KWobj;
+		arr.length = idx + 1;
+		arr.forEach(function(kw) {
+			obj = obj[kw];
+		});
+		this.setCurrObj(obj);
+		this.setState({
+			nav : arr
+		});
+	},
+
+	goBack: function() {
+		var arr = this.state.nav,
+			obj = this.state.KWobj;
+		arr.pop();
+		arr.forEach(function(kw) {
+			obj = obj[kw];
+		});
+		this.setCurrObj(obj);
+		this.setState({
+			nav : arr
+		});
+	},
+
 	componentWillMount: function() {
 		this.loadKWFromServer();
 	},
@@ -59,13 +85,17 @@ var WebAssistant = React.createClass({
 			<div>
 				<Header />
 				<div className="sep"></div>
-				<Main 
+				<Main
+					setHL={this.useHL}
 					obj={this.state.currObj}
 					nav={this.state.nav}
 					setObj={this.setCurrObj}
 					addNav={this.addNav}
 				/>
-				<Footer />
+				<Footer
+					nav={this.state.nav} 
+					goBack={this.goBack}
+				/>
 			</div>
 		);
 	}

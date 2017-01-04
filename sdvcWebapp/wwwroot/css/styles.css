@@ -38,6 +38,10 @@ h1 {
 	text-align: center;
 }
 
+footer {
+	margin-bottom: 20px;
+}
+
 .ten {
 	width: 9%;
 }
@@ -162,7 +166,7 @@ main#app {
 	height: auto;
 }
 
-.navig {
+.linkify {
 	text-decoration: underline;
 	cursor: pointer;
 }
@@ -170,6 +174,7 @@ main#app {
 #headline p {
 	display: block;
 	text-align: center;
+	font-size: .8em;
 }
 
 #btn-hldr, #srchBox {

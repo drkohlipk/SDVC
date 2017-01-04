@@ -13,15 +13,10 @@ var Button_Container = React.createClass({
 			newObj = this.props.obj[val];
 			this.props.setObj(newObj);
 			this.props.addNav(val);
-		if (Array.isArray(newObj)) {
-			this.setState({ bottom : true });
-		} else {
-			this.setState({ bottom : false });
-		}
 	},
 	
 	render: function() {
-		if (!this.state.bottom) {
+		if (!Array.isArray(this.props.obj)) {
 			var buttons = Object.keys(this.props.obj).map(function(key, index) {
 				return (
 					<Button onClick={this.handleClick} key={key} theKey={key} val={key}>{key}</Button>

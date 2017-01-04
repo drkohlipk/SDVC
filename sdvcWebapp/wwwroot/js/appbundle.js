@@ -62,7 +62,7 @@
 
 	var _webApp_Main2 = _interopRequireDefault(_webApp_Main);
 
-	var _webApp_Footer = __webpack_require__(190);
+	var _webApp_Footer = __webpack_require__(191);
 
 	var _webApp_Footer2 = _interopRequireDefault(_webApp_Footer);
 
@@ -116,6 +116,32 @@
 			});
 		},
 
+		useHL: function useHL(idx) {
+			var arr = this.state.nav,
+			    obj = this.state.KWobj;
+			arr.length = idx + 1;
+			arr.forEach(function (kw) {
+				obj = obj[kw];
+			});
+			this.setCurrObj(obj);
+			this.setState({
+				nav: arr
+			});
+		},
+
+		goBack: function goBack() {
+			var arr = this.state.nav,
+			    obj = this.state.KWobj;
+			arr.pop();
+			arr.forEach(function (kw) {
+				obj = obj[kw];
+			});
+			this.setCurrObj(obj);
+			this.setState({
+				nav: arr
+			});
+		},
+
 		componentWillMount: function componentWillMount() {
 			this.loadKWFromServer();
 		},
@@ -127,12 +153,16 @@
 				_react2.default.createElement(_webApp_Header2.default, null),
 				_react2.default.createElement('div', { className: 'sep' }),
 				_react2.default.createElement(_webApp_Main2.default, {
+					setHL: this.useHL,
 					obj: this.state.currObj,
 					nav: this.state.nav,
 					setObj: this.setCurrObj,
 					addNav: this.addNav
 				}),
-				_react2.default.createElement(_webApp_Footer2.default, null)
+				_react2.default.createElement(_webApp_Footer2.default, {
+					nav: this.state.nav,
+					goBack: this.goBack
+				})
 			);
 		}
 	});
@@ -21738,9 +21768,9 @@
 
 	var _webApp_Search_Container2 = _interopRequireDefault(_webApp_Search_Container);
 
-	var _webApp_Headline = __webpack_require__(189);
+	var _webApp_Headline_Container = __webpack_require__(189);
 
-	var _webApp_Headline2 = _interopRequireDefault(_webApp_Headline);
+	var _webApp_Headline_Container2 = _interopRequireDefault(_webApp_Headline_Container);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21752,8 +21782,8 @@
 				'div',
 				{ className: 'center ninety' },
 				_react2.default.createElement(
-					_webApp_Headline2.default,
-					null,
+					_webApp_Headline_Container2.default,
+					{ setHL: this.props.setHL },
 					this.props.nav
 				),
 				_react2.default.createElement(_webApp_Button_Container2.default, {
@@ -21799,15 +21829,10 @@
 			    newObj = this.props.obj[val];
 			this.props.setObj(newObj);
 			this.props.addNav(val);
-			if (Array.isArray(newObj)) {
-				this.setState({ bottom: true });
-			} else {
-				this.setState({ bottom: false });
-			}
 		},
 
 		render: function render() {
-			if (!this.state.bottom) {
+			if (!Array.isArray(this.props.obj)) {
 				var buttons = Object.keys(this.props.obj).map(function (key, index) {
 					return _react2.default.createElement(
 						_webApp_Button2.default,
@@ -22045,6 +22070,44 @@
 /* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _webApp_Headline = __webpack_require__(190);
+
+	var _webApp_Headline2 = _interopRequireDefault(_webApp_Headline);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Headline_Container = _react2.default.createClass({
+		displayName: 'Headline_Container',
+
+		getInitialState: function getInitialState() {
+			return null;
+		},
+
+		handleClick: function handleClick(idx) {
+			this.props.setHL(idx);
+		},
+
+		render: function render() {
+			return _react2.default.createElement(
+				_webApp_Headline2.default,
+				{ onClick: this.handleClick },
+				this.props.children
+			);
+		}
+	});
+
+	module.exports = Headline_Container;
+
+/***/ },
+/* 190 */
+/***/ function(module, exports, __webpack_require__) {
+
 	"use strict";
 
 	var _react = __webpack_require__(1);
@@ -22057,10 +22120,12 @@
 		var navig = props.children.map(function (key, i) {
 			return _react2.default.createElement(
 				"span",
-				null,
+				{ key: key },
 				_react2.default.createElement(
 					"span",
-					{ className: "navig", key: key },
+					{ className: "linkify", onClick: function onClick() {
+							return props.onClick(i);
+						}, key: key },
 					key
 				),
 				"\xA0>\xA0"
@@ -22085,7 +22150,7 @@
 	module.exports = Headline;
 
 /***/ },
-/* 190 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22098,29 +22163,37 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _webApp_Emergency_Container = __webpack_require__(191);
+	var _webApp_Back_Container = __webpack_require__(192);
+
+	var _webApp_Back_Container2 = _interopRequireDefault(_webApp_Back_Container);
+
+	var _webApp_Emergency_Container = __webpack_require__(194);
 
 	var _webApp_Emergency_Container2 = _interopRequireDefault(_webApp_Emergency_Container);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function Footer() {
-		return _react2.default.createElement(
-			'footer',
-			null,
-			_react2.default.createElement(
-				'a',
-				{ href: '#' },
-				'\u2190 Back'
-			),
-			_react2.default.createElement(_webApp_Emergency_Container2.default, null)
-		);
+	function Footer(props) {
+		if (props.nav.length === 0) {
+			return _react2.default.createElement(
+				'footer',
+				null,
+				_react2.default.createElement(_webApp_Emergency_Container2.default, null)
+			);
+		} else {
+			return _react2.default.createElement(
+				'footer',
+				null,
+				_react2.default.createElement(_webApp_Back_Container2.default, { onClick: props.goBack }),
+				_react2.default.createElement(_webApp_Emergency_Container2.default, null)
+			);
+		}
 	}
 
 	module.exports = Footer;
 
 /***/ },
-/* 191 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22129,7 +22202,63 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _webApp_Emergency = __webpack_require__(192);
+	var _webApp_Back = __webpack_require__(193);
+
+	var _webApp_Back2 = _interopRequireDefault(_webApp_Back);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Back_Container = _react2.default.createClass({
+		displayName: 'Back_Container',
+
+		getInitialState: function getInitialState() {
+			return null;
+		},
+
+		handleClick: function handleClick() {
+			this.props.onClick();
+		},
+
+		render: function render() {
+			return _react2.default.createElement(_webApp_Back2.default, { onClick: this.handleClick });
+		}
+	});
+
+	module.exports = Back_Container;
+
+/***/ },
+/* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Back(props) {
+		return _react2.default.createElement(
+			"span",
+			{ className: "left linkify", onClick: props.onClick },
+			"\u2190 Back"
+		);
+	}
+
+	module.exports = Back;
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _webApp_Emergency = __webpack_require__(195);
 
 	var _webApp_Emergency2 = _interopRequireDefault(_webApp_Emergency);
 
@@ -22162,7 +22291,7 @@
 	module.exports = Emergency_Container;
 
 /***/ },
-/* 192 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
