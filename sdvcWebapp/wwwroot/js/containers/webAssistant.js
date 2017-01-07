@@ -11,7 +11,9 @@ var WebAssistant = React.createClass({
 		return { 
 			KWobj : '',
 			currObj : '',
-			nav : []
+			VSOResult : '',
+			nav : [],
+			buttons : true
 	 	};
 	},
 
@@ -59,7 +61,8 @@ var WebAssistant = React.createClass({
 		});
 		this.setCurrObj(obj);
 		this.setState({
-			nav : arr
+			nav : arr,
+			buttons : true
 		});
 	},
 
@@ -72,8 +75,19 @@ var WebAssistant = React.createClass({
 		});
 		this.setCurrObj(obj);
 		this.setState({
-			nav : arr
+			nav : arr,
+			buttons : true
 		});
+	},
+
+	showVSO: function() {
+		this.XHR('/js/TestVSO.json', function(response) {
+			var obj = JSON.parse(response);
+			this.setState({
+				VSOResult : obj,
+				buttons : false
+			});
+		}.bind(this));
 	},
 
 	componentWillMount: function() {
@@ -91,6 +105,9 @@ var WebAssistant = React.createClass({
 					nav={this.state.nav}
 					setObj={this.setCurrObj}
 					addNav={this.addNav}
+					getVSO={this.showVSO}
+					buttons={this.state.buttons}
+					VSOResult={this.state.VSOResult}
 				/>
 				<Footer
 					nav={this.state.nav} 

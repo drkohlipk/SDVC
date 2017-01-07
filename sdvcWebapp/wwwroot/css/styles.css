@@ -264,3 +264,67 @@ hr:after {
 	vertical-align: middle;
 }
 
+#vso-hldr {
+	margin-top: 20px;
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+.vso > hr {
+	margin: 10px 0;
+}
+
+.vso > hr:after {
+	content: none;
+}
+
+.vso-top > img {
+	width: 75px;
+	height: 75px;
+	display: inline-block;
+}
+
+.vso-container {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 20px;
+}
+
+.vso-container > h2 {
+	font-size: 1.2em;
+	display: inline-block;
+}
+
+.vso-container > div {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 40px;
+}
+
+.vso-container > p {
+	margin-top: 10px;
+	font-size: .9em;
+}
+
+#kw-hldr {
+	margin-left: 100px;
+}
+
+.kw {
+	display: inline-block;
+	vertical-align: top;
+	border: 1px solid gray;
+	border-radius: 5px;
+	padding: 2px;
+	font-size: .6em;
+	margin-left: 5px;
+}
+
+.endos {
+	padding: 0 5px 0 3px;
+	border-right: 1px solid gray;
+}
+
+.kw-name {
+	margin-left: 5px;
+}

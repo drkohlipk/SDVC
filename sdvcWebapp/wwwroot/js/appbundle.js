@@ -62,7 +62,7 @@
 
 	var _webApp_Main2 = _interopRequireDefault(_webApp_Main);
 
-	var _webApp_Footer = __webpack_require__(191);
+	var _webApp_Footer = __webpack_require__(195);
 
 	var _webApp_Footer2 = _interopRequireDefault(_webApp_Footer);
 
@@ -77,7 +77,9 @@
 			return {
 				KWobj: '',
 				currObj: '',
-				nav: []
+				VSOResult: '',
+				nav: [],
+				buttons: true
 			};
 		},
 
@@ -125,7 +127,8 @@
 			});
 			this.setCurrObj(obj);
 			this.setState({
-				nav: arr
+				nav: arr,
+				buttons: true
 			});
 		},
 
@@ -138,8 +141,19 @@
 			});
 			this.setCurrObj(obj);
 			this.setState({
-				nav: arr
+				nav: arr,
+				buttons: true
 			});
+		},
+
+		showVSO: function showVSO() {
+			this.XHR('/js/TestVSO.json', function (response) {
+				var obj = JSON.parse(response);
+				this.setState({
+					VSOResult: obj,
+					buttons: false
+				});
+			}.bind(this));
 		},
 
 		componentWillMount: function componentWillMount() {
@@ -157,7 +171,10 @@
 					obj: this.state.currObj,
 					nav: this.state.nav,
 					setObj: this.setCurrObj,
-					addNav: this.addNav
+					addNav: this.addNav,
+					getVSO: this.showVSO,
+					buttons: this.state.buttons,
+					VSOResult: this.state.VSOResult
 				}),
 				_react2.default.createElement(_webApp_Footer2.default, {
 					nav: this.state.nav,
@@ -21772,28 +21789,53 @@
 
 	var _webApp_Headline_Container2 = _interopRequireDefault(_webApp_Headline_Container);
 
+	var _webApp_VSO_Container = __webpack_require__(191);
+
+	var _webApp_VSO_Container2 = _interopRequireDefault(_webApp_VSO_Container);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Main = _react2.default.createClass({
 		displayName: 'Main',
 
 		render: function render() {
-			return _react2.default.createElement(
-				'div',
-				{ className: 'center ninety' },
-				_react2.default.createElement(
-					_webApp_Headline_Container2.default,
-					{ setHL: this.props.setHL },
-					this.props.nav
-				),
-				_react2.default.createElement(_webApp_Button_Container2.default, {
-					obj: this.props.obj,
-					setObj: this.props.setObj,
-					addNav: this.props.addNav
-				}),
-				_react2.default.createElement('hr', null),
-				_react2.default.createElement(_webApp_Search_Container2.default, null)
-			);
+			if (this.props.buttons) {
+				return _react2.default.createElement(
+					'div',
+					{ className: 'center ninety' },
+					_react2.default.createElement(
+						_webApp_Headline_Container2.default,
+						{ setHL: this.props.setHL },
+						this.props.nav
+					),
+					_react2.default.createElement(_webApp_Button_Container2.default, {
+						nav: this.props.nav,
+						obj: this.props.obj,
+						setObj: this.props.setObj,
+						addNav: this.props.addNav,
+						getVSO: this.props.getVSO
+					}),
+					_react2.default.createElement('hr', null),
+					_react2.default.createElement(_webApp_Search_Container2.default, null)
+				);
+			} else {
+				return _react2.default.createElement(
+					'div',
+					{ className: 'center ninety' },
+					_react2.default.createElement(
+						_webApp_Headline_Container2.default,
+						{ setHL: this.props.setHL },
+						this.props.nav
+					),
+					_react2.default.createElement(_webApp_VSO_Container2.default, {
+						obj: this.props.obj,
+						setObj: this.props.setObj,
+						addNav: this.props.addNav,
+						getVSO: this.props.getVSO,
+						VSOObj: this.props.VSOResult
+					})
+				);
+			}
 		}
 	});
 
@@ -21819,9 +21861,7 @@
 		displayName: 'Button_Container',
 
 		getInitialState: function getInitialState() {
-			return {
-				bottom: false
-			};
+			return null;
 		},
 
 		handleClick: function handleClick(e) {
@@ -21831,12 +21871,18 @@
 			this.props.addNav(val);
 		},
 
+		bottomClick: function bottomClick(e) {
+			var val = e.target.value;
+			this.props.getVSO(val);
+			this.props.addNav(val);
+		},
+
 		render: function render() {
 			if (!Array.isArray(this.props.obj)) {
 				var buttons = Object.keys(this.props.obj).map(function (key, index) {
 					return _react2.default.createElement(
 						_webApp_Button2.default,
-						{ onClick: this.handleClick, key: key, theKey: key, val: key },
+						{ onClick: this.handleClick, key: key, nav: this.props.nav, val: key },
 						key
 					);
 				}.bind(this));
@@ -21845,7 +21891,7 @@
 				var buttons = arr.map(function (key, i) {
 					return _react2.default.createElement(
 						_webApp_Button2.default,
-						{ onClick: this.handleClick, key: key, theKey: key, val: key },
+						{ onClick: this.bottomClick, key: key, nav: this.props.nav, val: key },
 						key
 					);
 				}.bind(this));
@@ -21873,25 +21919,37 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function Button(props) {
-		return _react2.default.createElement(
-			"div",
-			{ id: "btn-hldr" },
-			_react2.default.createElement(
-				"button",
-				{ className: "btn btn-pop", onClick: props.onClick, value: props.val, key: props.theKey + '_btn' },
-				props.children
-			),
-			_react2.default.createElement(
-				"span",
-				{ className: "info", key: props.theKey + '_span' },
-				"\u2139",
+		if (props.nav.length === 0) {
+			return _react2.default.createElement(
+				"div",
+				{ id: "btn-hldr" },
+				_react2.default.createElement(
+					"button",
+					{ className: "btn btn-pop", onClick: props.onClick, value: props.val },
+					props.children
+				),
 				_react2.default.createElement(
 					"span",
-					{ className: "hoverable" },
-					"Descriptive Material Here"
+					{ className: "info" },
+					"\u2139",
+					_react2.default.createElement(
+						"span",
+						{ className: "hoverable" },
+						"Descriptive Material Here"
+					)
 				)
-			)
-		);
+			);
+		} else {
+			return _react2.default.createElement(
+				"div",
+				{ id: "btn-hldr" },
+				_react2.default.createElement(
+					"button",
+					{ className: "btn btn-pop", onClick: props.onClick, value: props.val, style: { marginLeft: 0 } },
+					props.children
+				)
+			);
+		}
 	}
 
 	module.exports = Button;
@@ -22159,15 +22217,196 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _webApp_VSO = __webpack_require__(192);
+
+	var _webApp_VSO2 = _interopRequireDefault(_webApp_VSO);
+
+	var _webApp_Keyword_Container = __webpack_require__(193);
+
+	var _webApp_Keyword_Container2 = _interopRequireDefault(_webApp_Keyword_Container);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var VSO_Container = _react2.default.createClass({
+		displayName: 'VSO_Container',
+
+		getInitialState: function getInitialState() {
+			return null;
+		},
+
+		handleClick: function handleClick(e) {
+			var val = e.target.value,
+			    newObj = this.props.obj[val];
+			this.props.setObj(newObj);
+			this.props.addNav(val);
+		},
+
+		render: function render() {
+			var arr = this.props.VSOObj;
+			var vsos = arr.map(function (key, i) {
+				return _react2.default.createElement(
+					'div',
+					{ className: 'vso', key: key.name },
+					_react2.default.createElement(_webApp_VSO2.default, { vsoInfo: key, onClick: this.handleClick, key: key.name }),
+					_react2.default.createElement(_webApp_Keyword_Container2.default, { keywords: key.keywords, key: key.name + '_kw' }),
+					_react2.default.createElement('hr', null)
+				);
+			}.bind(this));
+			return _react2.default.createElement(
+				'div',
+				{ id: 'vso-hldr' },
+				vsos
+			);
+		}
+	});
+
+	module.exports = VSO_Container;
+
+/***/ },
+/* 192 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _webApp_Keyword_Container = __webpack_require__(193);
+
+	var _webApp_Keyword_Container2 = _interopRequireDefault(_webApp_Keyword_Container);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function VSO(props) {
+		return _react2.default.createElement(
+			'div',
+			{ className: 'vso-top', onClick: props.onClick, id: props.vsoInfo.id },
+			_react2.default.createElement('img', { src: props.vsoInfo.pic, alt: props.vsoInfo.name }),
+			_react2.default.createElement(
+				'div',
+				{ className: 'vso-container seventy' },
+				_react2.default.createElement(
+					'h2',
+					null,
+					props.vsoInfo.name
+				),
+				_react2.default.createElement(
+					'div',
+					null,
+					props.vsoInfo.rating
+				),
+				_react2.default.createElement(
+					'p',
+					null,
+					props.vsoInfo.headline
+				)
+			)
+		);
+	}
+
+	module.exports = VSO;
+
+/***/ },
+/* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _webApp_Keyword = __webpack_require__(194);
+
+	var _webApp_Keyword2 = _interopRequireDefault(_webApp_Keyword);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Keyword_Container = _react2.default.createClass({
+		displayName: 'Keyword_Container',
+
+		getInitialState: function getInitialState() {
+			return null;
+		},
+
+		handleClick: function handleClick(e) {
+			var val = e.target.value,
+			    newObj = this.props.obj[val];
+			this.props.setObj(newObj);
+			this.props.addNav(val);
+		},
+
+		render: function render() {
+			var arr = this.props.keywords;
+			var kws = arr.map(function (key, i) {
+				return _react2.default.createElement(_webApp_Keyword2.default, { keyword: key, key: key.kw });
+			}.bind(this));
+			return _react2.default.createElement(
+				'div',
+				{ id: 'kw-hldr' },
+				kws
+			);
+		}
+	});
+
+	module.exports = Keyword_Container;
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Keyword(props) {
+		return _react2.default.createElement(
+			"div",
+			{ className: "kw" },
+			_react2.default.createElement(
+				"span",
+				{ className: "endos" },
+				props.keyword.endorsements
+			),
+			_react2.default.createElement(
+				"span",
+				{ className: "kw-name" },
+				props.keyword.kw,
+				_react2.default.createElement(
+					"span",
+					{ className: "add" },
+					"\xA0+"
+				)
+			)
+		);
+	}
+
+	module.exports = Keyword;
+
+/***/ },
+/* 195 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
 	var _reactDom = __webpack_require__(32);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _webApp_Back_Container = __webpack_require__(192);
+	var _webApp_Back_Container = __webpack_require__(196);
 
 	var _webApp_Back_Container2 = _interopRequireDefault(_webApp_Back_Container);
 
-	var _webApp_Emergency_Container = __webpack_require__(194);
+	var _webApp_Emergency_Container = __webpack_require__(198);
 
 	var _webApp_Emergency_Container2 = _interopRequireDefault(_webApp_Emergency_Container);
 
@@ -22193,7 +22432,7 @@
 	module.exports = Footer;
 
 /***/ },
-/* 192 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22202,7 +22441,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _webApp_Back = __webpack_require__(193);
+	var _webApp_Back = __webpack_require__(197);
 
 	var _webApp_Back2 = _interopRequireDefault(_webApp_Back);
 
@@ -22227,7 +22466,7 @@
 	module.exports = Back_Container;
 
 /***/ },
-/* 193 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22249,7 +22488,7 @@
 	module.exports = Back;
 
 /***/ },
-/* 194 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22258,7 +22497,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _webApp_Emergency = __webpack_require__(195);
+	var _webApp_Emergency = __webpack_require__(199);
 
 	var _webApp_Emergency2 = _interopRequireDefault(_webApp_Emergency);
 
@@ -22291,7 +22530,7 @@
 	module.exports = Emergency_Container;
 
 /***/ },
-/* 195 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

@@ -3,31 +3,31 @@ import Button from '../components/webApp_Button';
 
 var Button_Container = React.createClass({
 	getInitialState: function() {
-		return {
-			bottom: false
-		};
+		return null;
 	},
 
 	handleClick: function(e) {
 		var val = e.target.value,
 			newObj = this.props.obj[val];
-			this.props.setObj(newObj);
-			this.props.addNav(val);
+		this.props.setObj(newObj);
+		this.props.addNav(val);
+	},
+
+	bottomClick: function(e) {
+		var val = e.target.value;
+		this.props.getVSO(val);
+		this.props.addNav(val);
 	},
 	
 	render: function() {
 		if (!Array.isArray(this.props.obj)) {
 			var buttons = Object.keys(this.props.obj).map(function(key, index) {
-				return (
-					<Button onClick={this.handleClick} key={key} theKey={key} val={key}>{key}</Button>
-				);
+				return <Button onClick={this.handleClick} key={key} nav={this.props.nav} val={key}>{key}</Button>;
 			}.bind(this));
 		} else {
 			var arr = this.props.obj;
 			var buttons = arr.map(function(key, i) {
-				return (
-					<Button onClick={this.handleClick} key={key} theKey={key} val={key}>{key}</Button>
-				);
+				return <Button onClick={this.bottomClick} key={key} nav={this.props.nav} val={key}>{key}</Button>;
 			}.bind(this));
 		}
 		return (

@@ -1,0 +1,65 @@
+[
+	{
+		"id": "1",
+		"name": "Example VSO",
+		"pic": "/path/to/pic.jpg",
+		"headline": "This is a test description in order to get the information displayed correctly.  Gonna knock this out of the park!",
+		"rating": 5,
+		"keywords": [
+			{
+				"kw": "Loan Advice",
+				"endorsements": 2
+			},
+			{
+				"kw": "Resume Writing",
+				"endorsements": 4
+			},
+			{
+				"kw": "Physical Therapy",
+				"endorsements": 0
+			}
+		]
+	},
+	{
+		"id": "2",
+		"name": "Example VSO2",
+		"pic": "/path/to/pic.jpg",
+		"headline": "This is a test description in order to get the information displayed correctly.  Gonna knock this out of the park!",
+		"rating": 2,
+		"keywords": [
+			{
+				"kw": "Loan Advice",
+				"endorsements": 1
+			},
+			{
+				"kw": "Resume Writing",
+				"endorsements": 0
+			},
+			{
+				"kw": "Physical Therapy",
+				"endorsements": 2
+			}
+		]
+	},
+	{
+		"id": "3",
+		"name": "Example VSO3",
+		"pic": "/path/to/pic.jpg",
+		"headline": "This is a test description in order to get the information displayed correctly.  Gonna knock this out of the park!",
+		"rating": 4,
+		"keywords": [
+			{
+				"kw": "Loan Advice",
+				"endorsements": 0
+			},
+			{
+				"kw": "Resume Writing",
+				"endorsements": 1
+			},
+			{
+				"kw": "Physical Therapy",
+				"endorsements": 2
+			}
+		]
+	}
+]
