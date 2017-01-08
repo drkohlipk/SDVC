@@ -30,6 +30,7 @@ namespace sdvcWebapp
             // Add framework services.
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IKeywordRepository,KeywordRepository>();
+            services.AddSingleton<IVSORepository,VSORepository>();
             services.AddReact();
             services.AddMvc();
             services.AddSession();

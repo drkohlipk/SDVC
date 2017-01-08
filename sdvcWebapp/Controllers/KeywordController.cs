@@ -5,15 +5,18 @@ using Microsoft.AspNetCore.Mvc;
 using sdvcWebapp.Models;
 using sdvcWebapp.Repository;
 using sdvcWebapp.DataTransferObjects;
+using System.Linq;
 
 namespace sdvcWebapp.Controllers
 {
     public class KeywordController : Controller
     {
         private IKeywordRepository _kwRepo;
-        public KeywordController(IKeywordRepository kwRepository)
+        private IVSORepository _vsoRepo;
+        public KeywordController(IKeywordRepository kwRepository, IVSORepository vsorepo)
         {
             _kwRepo = kwRepository;
+            _vsoRepo = vsorepo;
         }
 
         [HttpPost]
@@ -26,15 +29,18 @@ namespace sdvcWebapp.Controllers
             //For testing purposes:
             Keyword kwToAdd = new Keyword();
             kwToAdd.kw = keywordDto.kw;
-            int response = _kwRepo.Add(kwToAdd);
-            if(response < 0)
-            {
-                return Content("Fail.");
-            }
-            else
-            {
-                return Ok();
-            }
+            _kwRepo.Add(kwToAdd);
+            _kwRepo.PersistChanges();
+            return Ok(); //TODO: Fix this
+
+            //return $"{request.Scheme}://{request.Host}{request.Path}";
+        }
+
+        [HttpGet]
+        [RouteAttribute("keyword/{keyword}")] //Should match the route so you can do sdvc.org/keyword/keywordhere
+        public IActionResult GetVSOsByKeyword(string keyword)
+        {
+            _vsoRepo.FindAny(vso => vso.endorsements.Where(e => e.keyword.kw == keyword));
         }
     }
 }

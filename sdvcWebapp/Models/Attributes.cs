@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace sdvcWebapp.Models
 {
-    public class Attributes : BaseEntity
+    public class Attribute : BaseEntity
     {
         public int Keyword_Id { get; set; }
         public int Vso_Id { get; set; }

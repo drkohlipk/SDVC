@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using sdvcWebapp.Models;
-using Dapper;
 using System.Linq;
 using MySql.Data.MySqlClient;
 using sdvcWebapp.Infrastructure;
