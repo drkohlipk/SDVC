@@ -4,24 +4,24 @@ using sdvcWebapp.Models;
 using Dapper;
 using System.Linq;
 using MySql.Data.MySqlClient;
+using sdvcWebapp.Infrastructure;
 
 namespace sdvcWebapp.Repository
 {
 public class KeywordRepository : IKeywordRepository
 {
-    private readonly Microsoft.Extensions.Options.IOptions<MySqlOptions> _dbOptions;
-    public KeywordRepository(Microsoft.Extensions.Options.IOptions<MySqlOptions> mySqlOptions)
+    private SDVCContext _context;
+    public KeywordRepository(SDVCContext context)
     {
-        _dbOptions = mySqlOptions;
+        _context = context;
     }
     private System.Data.IDbConnection _db;
 
     public IEnumerable<Keyword> GetAll()
     {
-        using(_db = new MySqlConnection(_dbOptions.Value.ConnectionString))
-        {
-            return _db.Query<Keyword>("SELECT * FROM \"Keywords\";");
-        }
+
+            return _context.Keywords.ToList();;
+
     }
 
     public Keyword FindById(int id)

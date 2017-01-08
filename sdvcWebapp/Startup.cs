@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Http;
 using sdvcWebapp.Factory;
 using React.AspNet;
 using sdvcWebapp.Repository;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using MySQL.Data.EntityFrameworkCore.Extensions;
+using sdvcWebapp.Infrastructure;
 
 namespace sdvcWebapp
 {
@@ -32,6 +35,8 @@ namespace sdvcWebapp
             services.AddSession();
             // services.AddScoped<UserFactory>();
             services.Configure<MySqlOptions>(Configuration.GetSection("DBInfo"));
+            string connection = Configuration.GetConnectionString("sdvcWebapp");
+services.AddDbContext<SDVCContext>(options => options.UseMySQL(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

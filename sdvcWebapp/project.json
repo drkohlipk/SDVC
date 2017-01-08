@@ -20,7 +20,8 @@
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
     "React.Core": "3.0.0",
-    "React.AspNet": "3.0.0"
+    "React.AspNet": "3.0.0",
+    "MySql.Data.EntityFrameworkCore": "7.0.5-ir21"
   },
 
   "frameworks": {
