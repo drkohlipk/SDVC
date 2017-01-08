@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using sdvcWebapp.Factory;
 using React.AspNet;
+using sdvcWebapp.Repository;
 
 namespace sdvcWebapp
 {
@@ -25,6 +26,7 @@ namespace sdvcWebapp
         {
             // Add framework services.
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IKeywordRepository,KeywordRepository>();
             services.AddReact();
             services.AddMvc();
             services.AddSession();
@@ -52,13 +54,13 @@ namespace sdvcWebapp
             // Browserify or Gulp), you can improve performance by disabling
             // ReactJS.NET's version of Babel and loading the pre-transpiled
             // scripts. Example:
-            // config
-            //  .SetLoadBabel(false)
+            config
+             .SetLoadBabel(false);
             //  .AddScriptWithoutTransform("~/js/tutorial.js");
             });
             app.UseStaticFiles();
             app.UseSession();
-            app.UseMvc();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
