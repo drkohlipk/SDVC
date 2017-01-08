@@ -7,7 +7,7 @@ namespace sdvcWebapp.Repository
 {
     public interface IBaseRepository<TEntity> where TEntity : class
     {
-        TEntity Get(int id);
+        TEntity FindById(int id);
         IList<TEntity> GetAll();
         IList<TEntity> FindAny(Expression<Func<TEntity, bool>> predicate);
 

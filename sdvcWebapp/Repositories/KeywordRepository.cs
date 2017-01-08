@@ -5,6 +5,7 @@ using Dapper;
 using System.Linq;
 using MySql.Data.MySqlClient;
 using sdvcWebapp.Infrastructure;
+using System.Linq.Expressions;
 
 namespace sdvcWebapp.Repository
 {
@@ -17,67 +18,55 @@ public class KeywordRepository : IKeywordRepository
     }
     private System.Data.IDbConnection _db;
 
-    public IEnumerable<Keyword> GetAll()
+    public IList<Keyword> GetAll()
     {
 
-            return _context.Keywords.ToList();;
+            return _context.Keywords.ToList();
 
     }
 
     public Keyword FindById(int id)
     {
-        using(_db = new MySqlConnection(_dbOptions.Value.ConnectionString))
-        {
-        return _db.QuerySingleOrDefault("SELECT * FROM \"Keywords\" WHERE id = @id;", new {id});
-        }
+        return _context.Keywords.SingleOrDefault(k => k.id == id);
     }
 //TODO: Fix This
-    public int Add(Keyword keyword)
+    public void Add(Keyword keyword)
     {
-        int responseId = -1;
-        if(keyword.kw.Length <= 100)
+       _context.Keywords.Add(keyword);
+    }
+
+
+
+
+
+        public IList<Keyword> FindAny(Expression<Func<Keyword, bool>> predicate)
         {
-            try
-            {
-                using(_db = new MySqlConnection(_dbOptions.Value.ConnectionString))
-                {
-                    string rightNow = DateTime.UtcNow.ToString();
-                    //TODO: Complete
-                    string query = String.Format("INSERT INTO keywords (kw,created_at,updated_at) VALUES (@kw,{0},@rightNow); SELECT CAST(SCOPE_IDENTITY() as int)",rightNow);
-                //Returns the new item's ID
-                responseId = _db.Query<int>(query,keyword).SingleOrDefault();
-                }
-            }catch(Exception ex)
-            {
-                return -2;
-            }
+            return _context.Keywords.Where(predicate).ToList();
         }
-        return responseId;
-    }
 
-    public Keyword FindByText()
-    {
-        throw new NotImplementedException();
-    }
+        public Keyword SingleOrDefault(Expression<Func<Keyword, bool>> predicate)
+        {
+            return _context.Keywords.SingleOrDefault(predicate);
+        }
 
-    List<Keyword> IBaseRepository<Keyword>.GetAll()
-    {
-        throw new NotImplementedException();
-    }
+        public void AddRange(IEnumerable<Keyword> entities)
+        {
+            _context.Keywords.AddRange(entities);
+        }
 
-    Keyword IBaseRepository<Keyword>.FindById(int id)
-    {
-        throw new NotImplementedException();
-    }
+        public void Remove(Keyword entity)
+        {
+            _context.Keywords.Remove(entity);
+        }
 
-    public Keyword Update(Keyword entity)
-    {
-        throw new NotImplementedException();
-    }
+        public void RemoveRange(IEnumerable<Keyword> entities)
+        {
+            _context.Keywords.RemoveRange(entities);
+        }
 
-    public void RemoveById(int id)
-    {
-        throw new NotImplementedException();
+        public void PersistChanges()
+        {
+            _context.SaveChanges();
+        }
     }
-}
 }
