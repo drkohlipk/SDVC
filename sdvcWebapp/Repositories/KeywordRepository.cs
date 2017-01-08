@@ -2,15 +2,23 @@ using System;
 using System.Collections.Generic;
 using sdvcWebapp.Models;
 using Dapper;
+using System.Linq;
 using MySql.Data.MySqlClient;
 
+namespace sdvcWebapp.Repository
+{
 public class KeywordRepository : IKeywordRepository
 {
+    private readonly Microsoft.Extensions.Options.IOptions<MySqlOptions> _dbOptions;
+    public KeywordRepository(Microsoft.Extensions.Options.IOptions<MySqlOptions> mySqlOptions)
+    {
+        _dbOptions = mySqlOptions;
+    }
     private System.Data.IDbConnection _db;
 
     public IEnumerable<Keyword> GetAll()
     {
-        using(_db = new MySqlConnection(mysqlConfig.Value.ConnectionString))
+        using(_db = new MySqlConnection(_dbOptions.Value.ConnectionString))
         {
             return _db.Query<Keyword>("SELECT * FROM \"Keywords\";");
         }
@@ -18,20 +26,33 @@ public class KeywordRepository : IKeywordRepository
 
     public Keyword FindById(int id)
     {
-        using(_db = new MySqlConnection(mysqlConfig.Value.ConnectionString))
+        using(_db = new MySqlConnection(_dbOptions.Value.ConnectionString))
         {
         return _db.QuerySingleOrDefault("SELECT * FROM \"Keywords\" WHERE id = @id;", new {id});
         }
     }
 //TODO: Fix This
-    public Keyword Add(Keyword keyword)
+    public int Add(Keyword keyword)
     {
-        using(_db = new MySqlConnection(mysqlConfig.Value.ConnectionString))
+        int responseId = -1;
+        if(keyword.kw.Length <= 100)
         {
-            //TODO: Complete
-            string query = "INSERT INTO Keywords (text) VALUES @Text"
-        return _db.Query<Keyword>(query,new {keyword = keyword});
+            try
+            {
+                using(_db = new MySqlConnection(_dbOptions.Value.ConnectionString))
+                {
+                    string rightNow = DateTime.UtcNow.ToString();
+                    //TODO: Complete
+                    string query = String.Format("INSERT INTO keywords (kw,created_at,updated_at) VALUES (@kw,{0},@rightNow); SELECT CAST(SCOPE_IDENTITY() as int)",rightNow);
+                //Returns the new item's ID
+                responseId = _db.Query<int>(query,keyword).SingleOrDefault();
+                }
+            }catch(Exception ex)
+            {
+                return -2;
+            }
         }
+        return responseId;
     }
 
     public Keyword FindByText()
@@ -49,11 +70,6 @@ public class KeywordRepository : IKeywordRepository
         throw new NotImplementedException();
     }
 
-    public Keyword Add(Keyword entity)
-    {
-        throw new NotImplementedException();
-    }
-
     public Keyword Update(Keyword entity)
     {
         throw new NotImplementedException();
@@ -63,4 +79,5 @@ public class KeywordRepository : IKeywordRepository
     {
         throw new NotImplementedException();
     }
+}
 }

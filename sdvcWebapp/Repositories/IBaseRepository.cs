@@ -7,7 +7,7 @@ namespace sdvcWebapp.Repository
     {
         List<TEntity> GetAll();
         TEntity FindById(int id);
-        TEntity Add(TEntity entity);
+        int Add(TEntity entity);
         TEntity Update(TEntity entity);
         void RemoveById(int id);
     // void RemoveRange(IEnumerable<TEntity> entities);

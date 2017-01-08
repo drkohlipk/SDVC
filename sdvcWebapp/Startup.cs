@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using sdvcWebapp.Factory;
 using React.AspNet;
+using sdvcWebapp.Repository;
 
 namespace sdvcWebapp
 {
@@ -25,6 +26,7 @@ namespace sdvcWebapp
         {
             // Add framework services.
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IKeywordRepository,KeywordRepository>();
             services.AddReact();
             services.AddMvc();
             services.AddSession();
@@ -57,7 +59,7 @@ namespace sdvcWebapp
             });
             app.UseStaticFiles();
             app.UseSession();
-            app.UseMvc();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
