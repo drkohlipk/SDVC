@@ -25,23 +25,11 @@ namespace sdvcWebapp.Models
 		public int approver_id { get; set; }
 		public Vet approver { get; set; }
 		public int status_id { get; set; }
-		public Status status { get; set; }
 		public int zip_id { get; set; }
-		public Zipcode zipcode { get; set;}
-		public ICollection<Review> reviews { get; set; }
-		public ICollection<Comment> comments { get; set; }
-		public ICollection<Service> services { get; set; }
-		public ICollection<Endorsement> endorsements { get; set; }
-		public ICollection<Donation> donations { get; set; }
-		public ICollection<Login> logins { get; set; }
+		public ICollection<Attribute> attributes { get; set; }
 		public VSO()
 		{
-			reviews = new List<Review>();
-			comments = new List<Comment>();
-			services = new List<Service>();
-			endorsements = new List<Endorsement>();
-			donations = new List<Donation>();
-			logins = new List<Login>();
+			attributes = new List<Attribute>();
 		}
 	}
 }
