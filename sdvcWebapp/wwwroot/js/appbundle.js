@@ -24462,10 +24462,7 @@
 		},
 
 		handleClick: function handleClick(e) {
-			var val = e.target.value,
-			    newObj = this.props.obj[val];
-			this.props.setObj(newObj);
-			this.props.addNav(val);
+			return;
 		},
 
 		render: function render() {
@@ -24527,7 +24524,7 @@
 					null,
 					props.vsoInfo.headline
 				),
-				_react2.default.createElement(_webApp_Keyword_Container2.default, { keywords: props.vsoInfo.keywords, key: props.vsoInfo.name + '_kw' })
+				_react2.default.createElement(_webApp_Keyword_Container2.default, { keywords: props.vsoInfo.keywords })
 			)
 		);
 	}
