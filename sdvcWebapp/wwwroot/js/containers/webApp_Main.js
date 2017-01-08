@@ -19,7 +19,7 @@ var Main = React.createClass({
 						getVSO={this.props.getVSO}
 					/>
 					<hr />
-					<Search />
+					<Search getVSO={this.props.getVSO}/>
 				</div>
 			);
 		} else {

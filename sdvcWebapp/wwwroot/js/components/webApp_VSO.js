@@ -1,5 +1,6 @@
 import React from 'react';
 import KW from '../containers/webApp_Keyword_Container';
+import Stars from './webApp_Stars';
 
 function VSO(props) {
 	return (
@@ -7,8 +8,9 @@ function VSO(props) {
 			<img src={props.vsoInfo.pic} alt={props.vsoInfo.name} />
 			<div className="vso-container seventy">
 				<h2>{props.vsoInfo.name}</h2>
-				<div>{props.vsoInfo.rating}</div>
+				<Stars rating={props.vsoInfo.rating}/>
 				<p>{props.vsoInfo.headline}</p>
+				<KW keywords={props.vsoInfo.keywords} />
 			</div>
 		</div>
 	);

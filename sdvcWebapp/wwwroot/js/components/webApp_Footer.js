@@ -1,20 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Back from '../containers/webApp_Back_Container';
+import Top from '../containers/webApp_Top_Container';
 import Emergency from '../containers/webApp_Emergency_Container';
 
 function Footer(props) {
-	if (props.nav.length === 0) {
+	if (props.nav.length === 0 && props.buttons) {
 		return (
 			<footer>
-				<Emergency />
+				<Emergency getVSO={props.getVSO}/>
 			</footer>
 		);
-	} else {
+	} else if (!props.buttons) {
+		return (
+			<footer>
+				<Top onClick={props.top} />
+				<Emergency getVSO={props.getVSO}/>
+			</footer>
+		);
+	} else {	
 		return (
 			<footer>
 				<Back onClick={props.goBack} />
-				<Emergency />
+				<Emergency getVSO={props.getVSO}/>
 			</footer>
 		);
 	}

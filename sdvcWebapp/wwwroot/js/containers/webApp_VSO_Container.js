@@ -8,10 +8,7 @@ var VSO_Container = React.createClass({
 	},
 
 	handleClick: function(e) {
-		var val = e.target.value,
-			newObj = this.props.obj[val];
-		this.props.setObj(newObj);
-		this.props.addNav(val);
+		return;
 	},
 	
 	render: function() {
@@ -20,7 +17,6 @@ var VSO_Container = React.createClass({
 			return (
 				<div className="vso" key={key.name}>
 					<VSO vsoInfo={key} onClick={this.handleClick} key={key.name} />
-					<KW keywords={key.keywords} key={key.name + '_kw'}/>
 					<hr />
 				</div>
 			);

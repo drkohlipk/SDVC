@@ -38,6 +38,16 @@ var WebAssistant = React.createClass({
 		}.bind(this));
 	},
 
+	searchAgain: function() {
+		var obj = this.state.KWobj;
+		this.setState({
+			currObj : obj,
+			VSOResult : '',
+			nav : [],
+			buttons : true
+		});
+	},
+
 	setCurrObj: function(obj) {
 		this.setState({
 			currObj : obj
@@ -112,6 +122,9 @@ var WebAssistant = React.createClass({
 				<Footer
 					nav={this.state.nav} 
 					goBack={this.goBack}
+					getVSO={this.showVSO}
+					top={this.searchAgain}
+					buttons={this.state.buttons}
 				/>
 			</div>
 		);
