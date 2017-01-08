@@ -11,33 +11,28 @@ namespace sdvcWebapp.Repository
 {
 public class KeywordRepository : IKeywordRepository
 {
-    private SDVCContext _context;
-    public KeywordRepository(SDVCContext context)
-    {
-        _context = context;
-    }
-    private System.Data.IDbConnection _db;
+        private SDVCContext _context;
+        public KeywordRepository(SDVCContext context)
+        {
+            _context = context;
+        }
 
-    public IList<Keyword> GetAll()
-    {
+        public IList<Keyword> GetAll()
+        {
 
-            return _context.Keywords.ToList();
+                return _context.Keywords.ToList();
 
-    }
+        }
 
-    public Keyword FindById(int id)
-    {
-        return _context.Keywords.SingleOrDefault(k => k.id == id);
-    }
-//TODO: Fix This
-    public void Add(Keyword keyword)
-    {
-       _context.Keywords.Add(keyword);
-    }
+        public Keyword FindById(int id)
+        {
+            return _context.Keywords.SingleOrDefault(k => k.id == id);
+        }
 
-
-
-
+        public void Add(Keyword keyword)
+        {
+        _context.Keywords.Add(keyword);
+        }
 
         public IList<Keyword> FindAny(Expression<Func<Keyword, bool>> predicate)
         {
