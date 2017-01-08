@@ -1,7 +1,7 @@
 import React from 'react';
 
-function Emergency() {
-	return <a href="#">Emergency Services</a>;
+function Emergency(props) {
+	return <span className="linkify" onClick={props.onClick}>Emergency Services</span>;
 }
 
 module.exports = Emergency;

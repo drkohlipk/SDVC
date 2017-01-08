@@ -7,17 +7,13 @@ var Emergency_Container = React.createClass({
 	},
 
 	handleClick: function(e) {
-		return;
-	},
-
-	handleHover: function(e) {
-		return;
+		this.props.getVSO();
 	},
 	
 	render: function() {
 		return (
 			<div className="right">
-				<Emergency />
+				<Emergency onClick={this.handleClick}/>
 			</div>
 		);
 	}

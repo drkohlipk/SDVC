@@ -1,12 +1,20 @@
 import React from 'react';
 
 function Button(props) {
-	return (
-		<div id="btn-hldr">
-			<button className="btn btn-pop" onClick={props.onClick} value={props.val} key={props.theKey + '_btn'}>{props.children}</button>
-			<span className="info" key={props.theKey + '_span'}>&#8505;<span className="hoverable">Descriptive Material Here</span></span>
-		</div>
-	);
+	if (props.nav.length === 0) {
+		return (
+			<div id="btn-hldr">
+				<button className="btn btn-pop" onClick={props.onClick} value={props.val}>{props.children}</button>
+				<span className="info">&#8505;<span className="hoverable">Descriptive Material Here</span></span>
+			</div>
+		);
+	} else {
+		return (
+			<div id="btn-hldr">
+				<button className="btn btn-pop" onClick={props.onClick} value={props.val} style={{marginLeft : 0}}>{props.children}</button>
+			</div>
+		);
+	}
 }
 
 module.exports = Button;

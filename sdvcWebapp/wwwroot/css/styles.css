@@ -3,7 +3,6 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: sans-serif;
-	color: #1d3666;
 }
 
 main {
@@ -11,7 +10,8 @@ main {
 	border-radius: 5px;
 	background-color: #fcfcfc;
 	box-shadow: 1px 1px 5px gray;
-	margin: 50px auto;
+	margin: 80px auto;
+	width: 800px;
 }
 
 header {
@@ -36,6 +36,15 @@ input, textarea {
 h1 {
 	margin: 20px 0 10px;
 	text-align: center;
+	color: #1d3666;
+}
+
+footer {
+	margin-bottom: 20px;
+}
+
+p {
+	color: #1d3666;
 }
 
 .ten {
@@ -154,7 +163,6 @@ main#app {
 	position: relative;
 	z-index: 3;
 	background: #FFF;
-	color: #000;
 }
 
 #logo {
@@ -162,7 +170,8 @@ main#app {
 	height: auto;
 }
 
-.navig {
+.linkify {
+	color: #1d3666;
 	text-decoration: underline;
 	cursor: pointer;
 }
@@ -170,9 +179,10 @@ main#app {
 #headline p {
 	display: block;
 	text-align: center;
+	font-size: .8em;
 }
 
-#btn-hldr, #srchBox {
+#btn-hldr, #srchBox, #sugg {
 	width: 100%;
 	text-align: center;
 }
@@ -182,6 +192,7 @@ main#app {
 }
 
 span.info {
+	color: #1d3666;
 	width: 20px;
 	height: 20px;
 	margin-left: 5px;
@@ -195,22 +206,24 @@ span.info {
 }
 
 span.hoverable {
+	color: #1d3666;
     background: #F8F8F8;
     border: 5px solid #DFDFDF;
     color: #717171;
     font-size: 13px;
-    height: 40px;
+    height: auto;
 	width: 200px;
     letter-spacing: 1px;
     position: absolute;
     text-align: center;
-    top: -50px;
+    bottom: 20px;
     left: -490%;
     display: none;
     padding: 10px 20px;
 }
 
 span.hoverable:after {
+	color: #1d3666;
     content: '';
     position: absolute;
     bottom: -10px; 
@@ -251,11 +264,150 @@ hr:after {
 
 #srchBox > input {
 	margin-left: 10px;
-	margin-right: 31px;
-	width: 170px;
+	margin-right: 20px;
+	width: 280px;
 	border-radius: 5px;
 	border: 1px solid lightgray;
 	text-align: center;
 	vertical-align: middle;
 }
 
+#vso-hldr {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+.vso:last-child hr {
+	display: none;
+}
+
+.vso {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.vso > hr {
+	margin: 10px 0;
+}
+
+.vso > hr:after {
+	content: none;
+}
+
+.vso-top > img {
+	width: 75px;
+	height: 75px;
+	margin-left: 50px;
+	display: inline-block;
+}
+
+.vso-container {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 20px;
+}
+
+.vso-container > h2 {
+	color: #1d3666;
+	font-size: 1.2em;
+	display: inline-block;
+	margin-top: 5px;
+}
+
+.vso-container > p {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: .9em;
+}
+
+.kw {
+	color: #1d3666;
+	display: inline-block;
+	vertical-align: top;
+	border: 1px solid gray;
+	border-radius: 5px;
+	padding: 2px;
+	font-size: .7em;
+	margin-left: 5px;
+}
+
+#kw-hldr .kw:first-child {
+	margin-left: 0px;
+}
+
+.endos {
+	padding: 0 5px 0 3px;
+	border-right: 1px solid gray;
+}
+
+.kw-name {
+	margin-left: 5px;
+}
+
+
+.react-autosuggest__container {
+  position: relative;
+}
+
+.react-autosuggest__input {
+  width: 240px;
+  height: 30px;
+  padding: 10px 20px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.react-autosuggest__input:focus {
+  outline: none;
+}
+
+.react-autosuggest__container--open #srchBox > input {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.react-autosuggest__suggestions-container {
+  display: none;
+}
+
+.react-autosuggest__container--open .react-autosuggest__suggestions-container {
+  display: block;
+  position: absolute;
+  top: 34px;
+  left: 222px;
+  width: 280px;
+  border: 1px solid lightgray;
+  background-color: white;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  z-index: 2;
+}
+
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.react-autosuggest__suggestion--focused {
+  background-color: #ddd;
+}
+
+.dv-star-rating {
+	vertical-align: top;
+	float: right;
+}

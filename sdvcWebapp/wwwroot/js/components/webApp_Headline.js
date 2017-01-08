@@ -3,7 +3,7 @@ import React from 'react';
 function Headline(props) {
 	var navig = props.children.map(function(key, i) {
 		return (
-			<span><span className="navig" key={key}>{key}</span>&nbsp;&gt;&nbsp;</span>
+			<span key={key}><span className="linkify" onClick={() => props.onClick(i)} key={key}>{key}</span>&nbsp;&gt;&nbsp;</span>
 		);
 	});
 	return (

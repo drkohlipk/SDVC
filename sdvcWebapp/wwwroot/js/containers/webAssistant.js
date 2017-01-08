@@ -11,7 +11,9 @@ var WebAssistant = React.createClass({
 		return { 
 			KWobj : '',
 			currObj : '',
-			nav : []
+			VSOResult : '',
+			nav : [],
+			buttons : true
 	 	};
 	},
 
@@ -36,6 +38,16 @@ var WebAssistant = React.createClass({
 		}.bind(this));
 	},
 
+	searchAgain: function() {
+		var obj = this.state.KWobj;
+		this.setState({
+			currObj : obj,
+			VSOResult : '',
+			nav : [],
+			buttons : true
+		});
+	},
+
 	setCurrObj: function(obj) {
 		this.setState({
 			currObj : obj
@@ -50,6 +62,44 @@ var WebAssistant = React.createClass({
 		});
 	},
 
+	useHL: function(idx) {
+		var arr = this.state.nav,
+			obj = this.state.KWobj;
+		arr.length = idx + 1;
+		arr.forEach(function(kw) {
+			obj = obj[kw];
+		});
+		this.setCurrObj(obj);
+		this.setState({
+			nav : arr,
+			buttons : true
+		});
+	},
+
+	goBack: function() {
+		var arr = this.state.nav,
+			obj = this.state.KWobj;
+		arr.pop();
+		arr.forEach(function(kw) {
+			obj = obj[kw];
+		});
+		this.setCurrObj(obj);
+		this.setState({
+			nav : arr,
+			buttons : true
+		});
+	},
+
+	showVSO: function() {
+		this.XHR('/js/TestVSO.json', function(response) {
+			var obj = JSON.parse(response);
+			this.setState({
+				VSOResult : obj,
+				buttons : false
+			});
+		}.bind(this));
+	},
+
 	componentWillMount: function() {
 		this.loadKWFromServer();
 	},
@@ -59,13 +109,23 @@ var WebAssistant = React.createClass({
 			<div>
 				<Header />
 				<div className="sep"></div>
-				<Main 
+				<Main
+					setHL={this.useHL}
 					obj={this.state.currObj}
 					nav={this.state.nav}
 					setObj={this.setCurrObj}
 					addNav={this.addNav}
+					getVSO={this.showVSO}
+					buttons={this.state.buttons}
+					VSOResult={this.state.VSOResult}
 				/>
-				<Footer />
+				<Footer
+					nav={this.state.nav} 
+					goBack={this.goBack}
+					getVSO={this.showVSO}
+					top={this.searchAgain}
+					buttons={this.state.buttons}
+				/>
 			</div>
 		);
 	}
