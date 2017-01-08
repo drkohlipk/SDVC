@@ -44,19 +44,19 @@ public class KeywordRepository : IKeywordRepository
             return _context.Keywords.SingleOrDefault(predicate);
         }
 
-        public void AddRange(IEnumerable<Keyword> entities)
+        public void AddRange(IEnumerable<Keyword> keywords)
         {
-            _context.Keywords.AddRange(entities);
+            _context.Keywords.AddRange(keywords);
         }
 
-        public void Remove(Keyword entity)
+        public void Remove(Keyword keyword)
         {
-            _context.Keywords.Remove(entity);
+            _context.Keywords.Remove(keyword);
         }
 
-        public void RemoveRange(IEnumerable<Keyword> entities)
+        public void RemoveRange(IEnumerable<Keyword> keywords)
         {
-            _context.Keywords.RemoveRange(entities);
+            _context.Keywords.RemoveRange(keywords);
         }
 
         public void PersistChanges()
