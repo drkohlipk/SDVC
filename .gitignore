@@ -5,3 +5,4 @@ sdvcWebapp/Factories/*
 Factories/IFactory.cs
 Factories/UserFactory.cs
 settings.json
+appsettings.json
