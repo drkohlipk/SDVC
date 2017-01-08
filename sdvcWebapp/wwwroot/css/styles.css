@@ -279,6 +279,10 @@ hr:after {
 	overflow-y: auto;
 }
 
+.vso-top {
+	margin-bottom: 20px;
+}
+
 .vso:last-child hr {
 	display: none;
 }

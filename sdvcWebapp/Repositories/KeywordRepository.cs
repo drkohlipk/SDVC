@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace sdvcWebapp.Repository
 {
-public class KeywordRepository : IKeywordRepository
+    public class KeywordRepository : IKeywordRepository
 {
     private readonly Microsoft.Extensions.Options.IOptions<MySqlOptions> _dbOptions;
     public KeywordRepository(Microsoft.Extensions.Options.IOptions<MySqlOptions> mySqlOptions)

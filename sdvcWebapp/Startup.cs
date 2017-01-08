@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using sdvcWebapp.Factory;
 using React.AspNet;
 using sdvcWebapp.Repository;
 
@@ -30,7 +29,7 @@ namespace sdvcWebapp
             services.AddReact();
             services.AddMvc();
             services.AddSession();
-            services.AddScoped<VetFactory>();
+            // services.AddScoped<VetFactory>();
             // services.AddScoped<UserFactory>();
             services.Configure<MySqlOptions>(Configuration.GetSection("DBInfo"));
         }
@@ -42,21 +41,8 @@ namespace sdvcWebapp
             app.UseDeveloperExceptionPage();
             app.UseReact(config =>
             {
-            // If you want to use server-side rendering of React components,
-            // add all the necessary JavaScript files here. This includes
-            // your components as well as all of their dependencies.
-            // See http://reactjs.net/ for more information. Example:
-            // config
-            //  .AddScript("~/Scripts/app.jsx");
-            //  .AddScript("~/Scripts/Second.jsx");
-
-            // If you use an external build too (for example, Babel, Webpack,
-            // Browserify or Gulp), you can improve performance by disabling
-            // ReactJS.NET's version of Babel and loading the pre-transpiled
-            // scripts. Example:
             config
              .SetLoadBabel(false);
-            //  .AddScriptWithoutTransform("~/js/tutorial.js");
             });
             app.UseStaticFiles();
             app.UseSession();

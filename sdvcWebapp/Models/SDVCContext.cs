@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using MySql.Data.EntityFrameworkCore.Extensions;
+using MySQL.Data.EntityFrameworkCore.Extensions;
 
 namespace sdvcWebapp.Models
 {
