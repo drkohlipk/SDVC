@@ -35,7 +35,7 @@ public class VSORepository : IVSORepository
 
         public IList<VSO> FindAny(Expression<Func<VSO, bool>> predicate)
         {
-            return _context.VSOs.Include(e => e.).Where(predicate).ToList(); //TODO: Include endorsements??
+            return _context.VSOs.Where(predicate).ToList(); //TODO: Include endorsements??
         }
 
         public VSO SingleOrDefault(Expression<Func<VSO, bool>> predicate)
@@ -57,7 +57,10 @@ public class VSORepository : IVSORepository
         {
             _context.VSOs.RemoveRange(vsos);
         }
-
+        public IEnumerable<VSO> GetVSOsByKeyword(string keyword)
+        {
+            _context.VSOs.Include(e => e.)
+        }
         public void PersistChanges()
         {
             _context.SaveChanges();
