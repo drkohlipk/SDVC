@@ -38,7 +38,7 @@ namespace sdvcWebapp
             // services.AddScoped<UserFactory>();
             services.Configure<MySqlOptions>(Configuration.GetSection("DBInfo"));
             string connection = Configuration.GetConnectionString("sdvcWebapp");
-services.AddDbContext<SDVCContext>(options => options.UseMySQL(connection));
+            services.AddDbContext<SDVCContext>(options => options.UseMySQL(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,8 +8,8 @@ using System.Linq.Expressions;
 
 namespace sdvcWebapp.Repository
 {
-public class KeywordRepository : IKeywordRepository
-{
+    public class KeywordRepository : IKeywordRepository
+    {
         private SDVCContext _context;
         public KeywordRepository(SDVCContext context)
         {

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace sdvcWebapp.Models
 {
 	public class Endorsement
