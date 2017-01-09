@@ -10,8 +10,8 @@ main {
 	border-radius: 5px;
 	background-color: #fcfcfc;
 	box-shadow: 1px 1px 5px gray;
-	margin: 80px auto;
-	width: 800px;
+	margin: 60px auto;
+	width: 700px;
 }
 
 header {
@@ -384,7 +384,7 @@ hr:after {
   display: block;
   position: absolute;
   top: 34px;
-  left: 222px;
+  left: 178px;
   width: 280px;
   border: 1px solid lightgray;
   background-color: white;

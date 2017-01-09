@@ -25,7 +25,7 @@ namespace sdvcWebapp
         {
             // Add framework services.
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<IKeywordRepository,KeywordRepository>();
+            // services.AddSingleton<IKeywordRepository,KeywordRepository>();
             services.AddReact();
             services.AddMvc();
             services.AddSession();
@@ -38,7 +38,7 @@ namespace sdvcWebapp
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
-            app.UseDeveloperExceptionPage();
+            // app.UseDeveloperExceptionPage();
             app.UseReact(config =>
             {
             config
