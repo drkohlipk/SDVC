@@ -17,9 +17,7 @@ public class EndorsementRepository : IEndorsementRepository
 
         public IList<Endorsement> GetAll()
         {
-
                 return _context.Endorsements.ToList();
-
         }
 
         public Endorsement FindById(int id)

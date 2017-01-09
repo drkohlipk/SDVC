@@ -57,9 +57,15 @@ public class VSORepository : IVSORepository
         {
             _context.VSOs.RemoveRange(vsos);
         }
-        public IEnumerable<VSO> GetVSOsByKeyword(string keyword)
+        public List<VSO> GetVSOsByKeyword(string keyword)
         {
-            _context.VSOs.Include(e => e.)
+            List<VSO> results = new List<VSO>();
+          IEnumerable<Endorsement> endos = _context.Endorsements.Where(e => e.keyword.kw == keyword);
+          foreach(Endorsement e in endos)
+          {
+              results.Add(e.vso);
+          }
+          return results;
         }
         public void PersistChanges()
         {

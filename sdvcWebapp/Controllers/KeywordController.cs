@@ -40,7 +40,15 @@ namespace sdvcWebapp.Controllers
         [RouteAttribute("keyword/{keyword}")] //Should match the route so you can do sdvc.org/keyword/keywordhere
         public IActionResult GetVSOsByKeyword(string keyword)
         {
-            _vsoRepo.FindAny(vso => vso.endorsements.Where(e => e.keyword.kw == keyword));
+            if(keyword != null && keyword.Length < 100)
+            {
+            List<VSO> vsos = _vsoRepo.GetVSOsByKeyword(keyword);
+            return Json(vsos);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }
