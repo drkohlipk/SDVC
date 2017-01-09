@@ -18,14 +18,12 @@ public class VSORepository : IVSORepository
 
         public IList<VSO> GetAll()
         {
-
-                return _context.VSOs.Include(v => v.attributes)
-                                        .ThenInclude(a => a.Keyword)
-                                    .Include(v => v.attributes)
-                                        .ThenInclude(a => a.Endorsements)
-                                            .ThenInclude(e => e.Vet)
-                                        .ToList();
-
+            return _context.VSOs.Include(v => v.attributes)
+                                    .ThenInclude(a => a.Keyword)
+                                .Include(v => v.attributes)
+                                    .ThenInclude(a => a.Endorsements)
+                                        .ThenInclude(e => e.Vet)
+                                    .ToList();
         }
 
         public VSO FindById(int id)
@@ -65,12 +63,12 @@ public class VSORepository : IVSORepository
         public List<VSO> GetVSOsByKeyword(string keyword)
         {
             List<VSO> results = new List<VSO>();
-          IEnumerable<KWAttribute> attributes = _context.Attributes.Where(a => a.Keyword.kw == keyword);
-          foreach(KWAttribute a in attributes)
-          {
-              results.Add(a.VSO);
-          }
-          return results;
+            IEnumerable<KWAttribute> attributes = _context.Attributes.Where(a => a.Keyword.kw == keyword);
+            foreach(KWAttribute a in attributes)
+            {
+                results.Add(a.VSO);
+            }
+            return results;
         }
         public void PersistChanges()
         {

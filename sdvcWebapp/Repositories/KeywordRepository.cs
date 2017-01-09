@@ -18,9 +18,7 @@ namespace sdvcWebapp.Repository
 
         public IList<Keyword> GetAll()
         {
-
-                return _context.Keywords.ToList();
-
+            return _context.Keywords.ToList();
         }
 
         public Keyword FindById(int id)
@@ -30,7 +28,7 @@ namespace sdvcWebapp.Repository
 
         public void Add(Keyword keyword)
         {
-        _context.Keywords.Add(keyword);
+            _context.Keywords.Add(keyword);
         }
 
         public IList<Keyword> FindAny(Expression<Func<Keyword, bool>> predicate)

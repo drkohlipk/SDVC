@@ -1,6 +1,6 @@
 namespace sdvcWebapp.Models
 {
-	public class Endorsement
+	public class Endorsement : BaseEntity
 	{
 		public int Endorsementid { get; set; }
 		public int Attributeid { get; set; }
