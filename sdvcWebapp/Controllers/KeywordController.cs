@@ -31,7 +31,8 @@ namespace sdvcWebapp.Controllers
             kwToAdd.kw = keywordDto.kw;
             _kwRepo.Add(kwToAdd);
             _kwRepo.PersistChanges();
-            return Ok(); //TODO: Fix this
+            Uri returnUri = new Uri($"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}");
+            return Created(returnUri,keywordDto); //TODO: Fix this
 
             //return $"{request.Scheme}://{request.Host}{request.Path}";
         }
