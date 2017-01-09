@@ -15,7 +15,7 @@ namespace sdvcWebapp.Models
 		public string address_1 { get; set; }
 		public string address_2 { get; set; }
 		public string emer_phone { get; set; }
-		public int disability_rating { get; set; }
+		public int disability_rate { get; set; }
 		public bool approved { get; set; }
 		public string verifier_name { get; set; }
 		// public string verifier_phone { get; set; }

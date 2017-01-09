@@ -19,7 +19,7 @@ namespace sdvcWebapp.Models
 		// public int branch_id { get; set; }
 		// public Branch branch { get; set; }
 		// public ICollection<Answer> answers { get; set; }
-		public ICollection<VSO> VSOs { get; set; }
+		// public ICollection<VSO> VSOs { get; set; }
 		// public ICollection<Review> reviews { get; set; }
 		// public ICollection<Comment> comments { get; set; }
 		// public ICollection<Service> services { get; set; }
@@ -29,7 +29,7 @@ namespace sdvcWebapp.Models
 		public Vet()
 		{
 			// answers = new List<Answer>();
-			VSOs = new List<VSO>();
+			// VSOs = new List<VSO>();
 			// reviews = new List<Review>();
 			// comments = new List<Comment>();
 			// services = new List<Service>();

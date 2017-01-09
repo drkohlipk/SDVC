@@ -18,12 +18,14 @@ public class VSORepository : IVSORepository
 
         public IList<VSO> GetAll()
         {
-            return _context.VSOs.Include(v => v.attributes)
-                                    .ThenInclude(a => a.Keyword)
-                                .Include(v => v.attributes)
-                                    .ThenInclude(a => a.Endorsements)
-                                        .ThenInclude(e => e.Vet)
-                                    .ToList();
+            // var obj = _context.VSOs.Include(v => v.attributes)
+            //                         .ThenInclude(a => a.Keyword)
+            //                     .Include(v => v.attributes)
+            //                         .ThenInclude(a => a.Endorsements)
+            //                             .ThenInclude(e => e.Vet)
+            //                         .ToList();
+            // return obj;
+            return _context.VSOs.ToList();
         }
 
         public VSO FindById(int id)
