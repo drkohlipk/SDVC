@@ -43,7 +43,8 @@ namespace sdvcWebapp.Controllers
         {
             if(keyword != null && keyword.Length < 100)
             {
-            List<VSO> vsos = _vsoRepo.GetVSOsByKeyword(keyword);
+            // List<VSO> vsos = _vsoRepo.GetVSOsByKeyword(keyword);
+            IList<VSO> vsos = _vsoRepo.GetAll();
             return Json(vsos);
             }
             else

@@ -25,7 +25,7 @@ public class KeywordRepository : IKeywordRepository
 
         public Keyword FindById(int id)
         {
-            return _context.Keywords.SingleOrDefault(k => k.id == id);
+            return _context.Keywords.SingleOrDefault(k => k.Keywordid == id);
         }
 
         public void Add(Keyword keyword)

@@ -22,7 +22,7 @@ public class EndorsementRepository : IEndorsementRepository
 
         public Endorsement FindById(int id)
         {
-            return _context.Endorsements.SingleOrDefault(k => k.id == id);
+            return _context.Endorsements.SingleOrDefault(e => e.Endorsementid == id);
         }
 
         public void Add(Endorsement endorsement)
