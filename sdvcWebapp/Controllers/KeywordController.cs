@@ -43,9 +43,9 @@ namespace sdvcWebapp.Controllers
         {
             if(keyword != null && keyword.Length < 100)
             {
-                // List<VSO> vsos = _vsoRepo.GetVSOsByKeyword(keyword);
-                ICollection<VSO> vsos = new List<VSO>();
-                vsos = _vsoRepo.GetAll();
+                IList<VSO> vsos = _vsoRepo.GetVSOsByKeyword(keyword);
+                // IList<VSO> vsos = new List<VSO>();
+                // vsos = _vsoRepo.GetAll();
                 return Json(vsos);
             }
             else
@@ -54,7 +54,7 @@ namespace sdvcWebapp.Controllers
             }
         }
 
-        private static ICollection<VSO> GetVsos()
+        private static IList<VSO> GetVsos()
         {
             return new List<VSO>();
         }
