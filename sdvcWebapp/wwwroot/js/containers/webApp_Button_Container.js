@@ -20,7 +20,11 @@ var Button_Container = React.createClass({
 	},
 	
 	render: function() {
-		if (!Array.isArray(this.props.obj)) {
+		if (!Array.isArray(this.props.obj) && this.props.nav.length == 0) {
+			var buttons = Object.keys(this.props.obj).map(function(key, index) {
+				return <Button desc={this.props.desc[key]} onClick={this.handleClick} key={key} nav={this.props.nav} val={key}>{key}</Button>;
+			}.bind(this));
+		} else if (!Array.isArray(this.props.obj)) {
 			var buttons = Object.keys(this.props.obj).map(function(key, index) {
 				return <Button onClick={this.handleClick} key={key} nav={this.props.nav} val={key}>{key}</Button>;
 			}.bind(this));

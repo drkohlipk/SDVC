@@ -1,55 +1,47 @@
 [
 	{
 		"id": "1",
-		"name": "Example VSO",
-		"pic": "/path/to/pic.jpg",
-		"headline": "This is a test description in order to get the information displayed correctly.  Gonna knock this out of the park!",
-		"rating": 5,
+		"name": "SD VCC",
+		"pic": "../images/sdvcc.png",
+		"headline": "Vets' Community Connections (VCC) is a community-based initiative designed to involve a greater number of individuals in veteran reintegration efforts.",
+		"rating": 3,
 		"keywords": [
 			{
-				"kw": "Loan Advice",
+				"kw": "Job Search Training",
 				"endorsements": 2
 			},
 			{
-				"kw": "Resume Writing",
+				"kw": "Networking",
 				"endorsements": 4
-			},
-			{
-				"kw": "Physical Therapy",
-				"endorsements": 0
 			}
 		]
 	},
 	{
 		"id": "2",
-		"name": "Example VSO2",
-		"pic": "/path/to/pic.jpg",
-		"headline": "This is a test description in order to get the information displayed correctly.  Gonna knock this out of the park!",
-		"rating": 2,
+		"name": "Psych Armor Institute",
+		"pic": "../images/psych_armor.png",
+		"headline": "PsychArmor Institute is a nonprofit that provides FREE education and support to all Americans who work with, live with, or care for service members, veterans, and their families.",
+		"rating": 5,
 		"keywords": [
 			{
-				"kw": "Loan Advice",
+				"kw": "Educational Workshops",
 				"endorsements": 1
 			},
 			{
-				"kw": "Resume Writing",
+				"kw": "Social Events",
 				"endorsements": 0
-			},
-			{
-				"kw": "Physical Therapy",
-				"endorsements": 2
 			}
 		]
 	},
 	{
 		"id": "3",
-		"name": "Example VSO3",
-		"pic": "/path/to/pic.jpg",
-		"headline": "This is a test description in order to get the information displayed correctly.  Gonna knock this out of the park!",
+		"name": "Zero8Hundred",
+		"pic": "../images/zero8hundred.png",
+		"headline": "To proactively link transitioning military families to a broad range of resources and opportunities in the community, helping them successfully transition to civilian life.",
 		"rating": 4,
 		"keywords": [
 			{
-				"kw": "Loan Advice",
+				"kw": "Job Search Training",
 				"endorsements": 0
 			},
 			{
@@ -57,7 +49,15 @@
 				"endorsements": 1
 			},
 			{
-				"kw": "Physical Therapy",
+				"kw": "Internships",
+				"endorsements": 2
+			},
+			{
+				"kw": "Networking",
+				"endorsements": 5
+			},
+			{
+				"kw": "Educational Workshops",
 				"endorsements": 2
 			}
 		]

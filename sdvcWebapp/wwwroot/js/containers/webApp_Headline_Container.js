@@ -11,7 +11,7 @@ var Headline_Container = React.createClass({
 	},
 	
 	render: function() {
-		return <Headline onClick={this.handleClick}>{this.props.children}</Headline>;
+		return <Headline buttons={this.props.buttons} onClick={this.handleClick}>{this.props.children}</Headline>;
 	}
 });
 

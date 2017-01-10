@@ -43,7 +43,7 @@ footer {
 	margin-bottom: 20px;
 }
 
-p {
+p, h6 {
 	color: #1d3666;
 }
 
@@ -219,7 +219,7 @@ span.hoverable {
     bottom: 20px;
     left: -490%;
     display: none;
-    padding: 10px 20px;
+    padding: 10px 5px;
 }
 
 span.hoverable:after {
@@ -303,8 +303,9 @@ hr:after {
 
 .vso-top > img {
 	width: 75px;
-	height: 75px;
+	height: auto;
 	margin-left: 50px;
+	margin-top: 10px;
 	display: inline-block;
 }
 
@@ -414,4 +415,21 @@ hr:after {
 .dv-star-rating {
 	vertical-align: top;
 	float: right;
+}
+
+#callBox {
+	display: block;
+	text-align: center;
+	font-size: 14px;
+	padding: 0;
+}
+
+#callBox h6 {
+	font-size: 1em;
+	margin: 0;
+}
+
+#callBox p {
+	font-size: .9em;
+	margin: 0;
 }

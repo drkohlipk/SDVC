@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Header from '../components/webApp_Header';
 import Main from './webApp_Main';
 import Footer from '../components/webApp_Footer';
+import Descs from '../Descs';
 
 let emergency = ["911", "Suicidal Thoughts", "Emergency Counseling"];
 
@@ -13,7 +14,8 @@ var WebAssistant = React.createClass({
 			currObj : '',
 			VSOResult : '',
 			nav : [],
-			buttons : true
+			buttons : true,
+			desc : Descs
 	 	};
 	},
 
@@ -118,6 +120,7 @@ var WebAssistant = React.createClass({
 					getVSO={this.showVSO}
 					buttons={this.state.buttons}
 					VSOResult={this.state.VSOResult}
+					desc={this.state.desc}
 				/>
 				<Footer
 					nav={this.state.nav} 

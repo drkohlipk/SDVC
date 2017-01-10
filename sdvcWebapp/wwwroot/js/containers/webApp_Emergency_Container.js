@@ -12,7 +12,7 @@ var Emergency_Container = React.createClass({
 	
 	render: function() {
 		return (
-			<div className="right">
+			<div id="emerg" className="right">
 				<Emergency onClick={this.handleClick}/>
 			</div>
 		);

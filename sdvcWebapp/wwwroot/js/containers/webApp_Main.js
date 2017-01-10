@@ -10,13 +10,14 @@ var Main = React.createClass({
 		if (this.props.buttons) {
 			return (
 				<div className="center ninety">
-					<HeadLine setHL={this.props.setHL}>{this.props.nav}</HeadLine>
+					<HeadLine buttons={this.props.buttons} setHL={this.props.setHL}>{this.props.nav}</HeadLine>
 					<Button 
 						nav={this.props.nav}
 						obj={this.props.obj} 
 						setObj={this.props.setObj} 
 						addNav={this.props.addNav}
 						getVSO={this.props.getVSO}
+						desc={this.props.desc}
 					/>
 					<hr />
 					<Search getVSO={this.props.getVSO}/>
@@ -25,7 +26,7 @@ var Main = React.createClass({
 		} else {
 			return (
 				<div className="center ninety">
-					<HeadLine setHL={this.props.setHL}>{this.props.nav}</HeadLine>
+					<HeadLine buttons={this.props.buttons} setHL={this.props.setHL}>{this.props.nav}</HeadLine>
 					<VSO 
 						obj={this.props.obj} 
 						setObj={this.props.setObj} 
@@ -33,6 +34,10 @@ var Main = React.createClass({
 						getVSO={this.props.getVSO}
 						VSOObj={this.props.VSOResult}
 					/>
+					<div id="callBox">
+						<h6>Still can't find what you're looking for?</h6>
+						<p>Call: 858-374-5555</p>
+					</div>
 				</div>
 			);
 		}

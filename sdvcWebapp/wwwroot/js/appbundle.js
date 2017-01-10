@@ -66,6 +66,10 @@
 
 	var _webApp_Footer2 = _interopRequireDefault(_webApp_Footer);
 
+	var _Descs = __webpack_require__(218);
+
+	var _Descs2 = _interopRequireDefault(_Descs);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var emergency = ["911", "Suicidal Thoughts", "Emergency Counseling"];
@@ -79,7 +83,8 @@
 				currObj: '',
 				VSOResult: '',
 				nav: [],
-				buttons: true
+				buttons: true,
+				desc: _Descs2.default
 			};
 		},
 
@@ -184,7 +189,8 @@
 					addNav: this.addNav,
 					getVSO: this.showVSO,
 					buttons: this.state.buttons,
-					VSOResult: this.state.VSOResult
+					VSOResult: this.state.VSOResult,
+					desc: this.state.desc
 				}),
 				_react2.default.createElement(_webApp_Footer2.default, {
 					nav: this.state.nav,
@@ -21818,7 +21824,7 @@
 					{ className: 'center ninety' },
 					_react2.default.createElement(
 						_webApp_Headline_Container2.default,
-						{ setHL: this.props.setHL },
+						{ buttons: this.props.buttons, setHL: this.props.setHL },
 						this.props.nav
 					),
 					_react2.default.createElement(_webApp_Button_Container2.default, {
@@ -21826,7 +21832,8 @@
 						obj: this.props.obj,
 						setObj: this.props.setObj,
 						addNav: this.props.addNav,
-						getVSO: this.props.getVSO
+						getVSO: this.props.getVSO,
+						desc: this.props.desc
 					}),
 					_react2.default.createElement('hr', null),
 					_react2.default.createElement(_webApp_Search_Container2.default, { getVSO: this.props.getVSO })
@@ -21837,7 +21844,7 @@
 					{ className: 'center ninety' },
 					_react2.default.createElement(
 						_webApp_Headline_Container2.default,
-						{ setHL: this.props.setHL },
+						{ buttons: this.props.buttons, setHL: this.props.setHL },
 						this.props.nav
 					),
 					_react2.default.createElement(_webApp_VSO_Container2.default, {
@@ -21846,7 +21853,21 @@
 						addNav: this.props.addNav,
 						getVSO: this.props.getVSO,
 						VSOObj: this.props.VSOResult
-					})
+					}),
+					_react2.default.createElement(
+						'div',
+						{ id: 'callBox' },
+						_react2.default.createElement(
+							'h6',
+							null,
+							'Still can\'t find what you\'re looking for?'
+						),
+						_react2.default.createElement(
+							'p',
+							null,
+							'Call: 858-374-5555'
+						)
+					)
 				);
 			}
 		}
@@ -21891,7 +21912,15 @@
 		},
 
 		render: function render() {
-			if (!Array.isArray(this.props.obj)) {
+			if (!Array.isArray(this.props.obj) && this.props.nav.length == 0) {
+				var buttons = Object.keys(this.props.obj).map(function (key, index) {
+					return _react2.default.createElement(
+						_webApp_Button2.default,
+						{ desc: this.props.desc[key], onClick: this.handleClick, key: key, nav: this.props.nav, val: key },
+						key
+					);
+				}.bind(this));
+			} else if (!Array.isArray(this.props.obj)) {
 				var buttons = Object.keys(this.props.obj).map(function (key, index) {
 					return _react2.default.createElement(
 						_webApp_Button2.default,
@@ -21948,7 +21977,7 @@
 					_react2.default.createElement(
 						"span",
 						{ className: "hoverable" },
-						"Descriptive Material Here"
+						props.desc
 					)
 				)
 			);
@@ -24381,7 +24410,7 @@
 		render: function render() {
 			return _react2.default.createElement(
 				_webApp_Headline2.default,
-				{ onClick: this.handleClick },
+				{ buttons: this.props.buttons, onClick: this.handleClick },
 				this.props.children
 			);
 		}
@@ -24416,20 +24445,37 @@
 				"\xA0>\xA0"
 			);
 		});
-		return _react2.default.createElement(
-			"div",
-			{ id: "headline", className: "ninety center" },
-			_react2.default.createElement(
-				"h1",
-				{ className: "center" },
-				"What can we help you with today?"
-			),
-			_react2.default.createElement(
-				"p",
-				null,
-				navig
-			)
-		);
+		if (props.buttons) {
+			return _react2.default.createElement(
+				"div",
+				{ id: "headline", className: "ninety center" },
+				_react2.default.createElement(
+					"h1",
+					{ className: "center" },
+					"What can we help you with today?"
+				),
+				_react2.default.createElement(
+					"p",
+					null,
+					navig
+				)
+			);
+		} else {
+			return _react2.default.createElement(
+				"div",
+				{ id: "headline", className: "ninety center" },
+				_react2.default.createElement(
+					"h1",
+					{ className: "center" },
+					"Here are your results"
+				),
+				_react2.default.createElement(
+					"p",
+					null,
+					navig
+				)
+			);
+		}
 	}
 
 	module.exports = Headline;
@@ -25110,7 +25156,7 @@
 		render: function render() {
 			return _react2.default.createElement(
 				'div',
-				{ className: 'right' },
+				{ id: 'emerg', className: 'right' },
 				_react2.default.createElement(_webApp_Emergency2.default, { onClick: this.handleClick })
 			);
 		}
@@ -25139,6 +25185,21 @@
 	}
 
 	module.exports = Emergency;
+
+/***/ },
+/* 218 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	var desc = {
+	    "Physical and Emotional Health": "Topics related to physical and emotional wellness of the Veteran population.",
+	    "Financial and Employment": "Keywords related to Employment, Entrepreneurship and Financial stability.",
+	    "Family and Life": "For assistance with items in and around the house and having to do with family.",
+	    "Vets Empowered": "Items related to personal development of the Veteran/Military including educational pursuits, legal services access, and volunteer opportunities."
+	};
+
+	module.exports = desc;
 
 /***/ }
 /******/ ]);
