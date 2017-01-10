@@ -18,28 +18,13 @@ namespace sdvcWebapp.Models
 		public int disability_rate { get; set; }
 		public bool approved { get; set; }
 		public string verifier_name { get; set; }
-		// public string verifier_phone { get; set; }
 		public string verifier_email { get; set; }
 		public string website { get; set; }
 		public string password { get; set; }
-		// public int approver_id { get; set; }
-		// public Vet approver { get; set; }
-		// public int zipid { get; set; }
-		// public Zipcode zipcode { get; set;}
-		// public ICollection<Review> reviews { get; set; }
-		// public ICollection<Comment> comments { get; set; }
-		// public ICollection<Service> services { get; set; }
 		public ICollection<KWAttribute> attributes { get; set; }
-		// public ICollection<Donation> donations { get; set; }
-		// public ICollection<Login> logins { get; set; }
 		public VSO()
 		{
-			// reviews = new List<Review>();
-			// comments = new List<Comment>();
-			// services = new List<Service>();
 			attributes = new List<KWAttribute>();
-			// donations = new List<Donation>();
-			// logins = new List<Login>();
 		}
 	}
 }

@@ -60,5 +60,15 @@ namespace sdvcWebapp.Repository
         {
             _context.SaveChanges();
         }
+
+        Keyword IBaseRepository<Keyword>.Update(Keyword entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IBaseRepository<Keyword>.RemoveById(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

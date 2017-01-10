@@ -213,10 +213,10 @@
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Factories/IFactory.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Factories/UserFactory.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Infrastructure/SDVCContext.cs
-/Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/Attribute.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/BaseEntity.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/Endorsement.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/Keyword.cs
+/Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/KWAttribute.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/Vet.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Models/VSO.cs
 /Users/pj/Documents/Computer_Geekery/gitHub/SDVC/sdvcWebapp/Properties/MySqlOptions.cs

@@ -9,7 +9,7 @@ namespace sdvcWebapp.Infrastructure
         {
             Database.EnsureCreated();
         }
-        public  DbSet<KWAttribute> Attributes {get; set;}
+        public  DbSet<KWAttribute> KWAttributes {get; set;}
         public  DbSet<Endorsement> Endorsements {get; set;}
         public  DbSet<Keyword> Keywords {get; set;}
         public  DbSet<Vet> Vets {get; set;}

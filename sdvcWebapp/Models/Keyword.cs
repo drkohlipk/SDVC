@@ -9,10 +9,10 @@ namespace sdvcWebapp.Models
 		[MaxLengthAttribute(100)]
 		[Required]
 		public string kw { get; set; }
-		public ICollection<KWAttribute> Attributes { get; set; }
+		public ICollection<KWAttribute> KWAttributes { get; set; }
 		public Keyword()
 		{
-			Attributes = new List<KWAttribute>();
+			KWAttributes = new List<KWAttribute>();
 		}
 	}
 }

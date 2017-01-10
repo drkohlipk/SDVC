@@ -59,5 +59,30 @@ public class EndorsementRepository : IEndorsementRepository
         {
             _context.SaveChanges();
         }
+
+        IList<Endorsement> IBaseRepository<Endorsement>.GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        Endorsement IBaseRepository<Endorsement>.FindById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IBaseRepository<Endorsement>.Add(Endorsement entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        Endorsement IBaseRepository<Endorsement>.Update(Endorsement entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IBaseRepository<Endorsement>.RemoveById(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
