@@ -62,11 +62,11 @@
 
 	var _webApp_Main2 = _interopRequireDefault(_webApp_Main);
 
-	var _webApp_Footer = __webpack_require__(211);
+	var _webApp_Footer = __webpack_require__(213);
 
 	var _webApp_Footer2 = _interopRequireDefault(_webApp_Footer);
 
-	var _Descs = __webpack_require__(218);
+	var _Descs = __webpack_require__(220);
 
 	var _Descs2 = _interopRequireDefault(_Descs);
 
@@ -21776,7 +21776,11 @@
 		return _react2.default.createElement(
 			"button",
 			{ className: "btn btn-imp", onClick: props.onClick },
-			"x"
+			_react2.default.createElement(
+				"span",
+				null,
+				"x"
+			)
 		);
 	}
 
@@ -21973,7 +21977,11 @@
 				_react2.default.createElement(
 					"span",
 					{ className: "info" },
-					"\u2139",
+					_react2.default.createElement(
+						"span",
+						{ className: "infoI" },
+						"\u2139"
+					),
 					_react2.default.createElement(
 						"span",
 						{ className: "hoverable" },
@@ -24549,13 +24557,49 @@
 
 	var _webApp_Stars2 = _interopRequireDefault(_webApp_Stars);
 
+	var _shareAlt = __webpack_require__(211);
+
+	var _shareAlt2 = _interopRequireDefault(_shareAlt);
+
+	var _mobile = __webpack_require__(212);
+
+	var _mobile2 = _interopRequireDefault(_mobile);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function VSO(props) {
 		return _react2.default.createElement(
 			'div',
 			{ className: 'vso-top', onClick: props.onClick, id: props.vsoInfo.id },
-			_react2.default.createElement('img', { src: props.vsoInfo.pic, alt: props.vsoInfo.name }),
+			_react2.default.createElement(
+				'div',
+				{ className: 'vsoPicSide thirty' },
+				_react2.default.createElement('img', { src: props.vsoInfo.pic, alt: props.vsoInfo.name }),
+				_react2.default.createElement(
+					'div',
+					{ className: 'share' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'call' },
+						_react2.default.createElement(_mobile2.default, { className: 'phoneIcon', size: 19, color: '#1d3666' }),
+						_react2.default.createElement(
+							'a',
+							{ href: '#', className: 'linkify' },
+							'Call VSO now!'
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'shareStuff' },
+						_react2.default.createElement(_shareAlt2.default, { className: 'shareIcon', size: 15, color: '#1d3666' }),
+						_react2.default.createElement(
+							'span',
+							{ className: 'linkify' },
+							'Share this!'
+						)
+					)
+				)
+			),
 			_react2.default.createElement(
 				'div',
 				{ className: 'vso-container seventy' },
@@ -24966,6 +25010,78 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactIconBase = __webpack_require__(188);
+
+	var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var FaShareAlt = function FaShareAlt(props) {
+	    return _react2.default.createElement(
+	        _reactIconBase2.default,
+	        _extends({ viewBox: '0 0 40 40' }, props),
+	        _react2.default.createElement(
+	            'g',
+	            null,
+	            _react2.default.createElement('path', { d: 'm30.1 22.9q3 0 5.1 2t2.1 5.1-2.1 5.1-5.1 2-5-2-2.1-5.1q0-0.3 0-0.8l-8-4q-2 1.9-4.9 1.9-2.9 0-5-2t-2.1-5.1 2.1-5.1 5-2q2.9 0 4.9 1.9l8-4q0-0.5 0-0.8 0-3 2.1-5.1t5-2 5.1 2 2.1 5.1-2.1 5.1-5.1 2q-2.8 0-4.8-1.9l-8.1 4q0.1 0.5 0.1 0.8t-0.1 0.8l8.1 4q2-1.9 4.8-1.9z' })
+	        )
+	    );
+	};
+
+	exports.default = FaShareAlt;
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactIconBase = __webpack_require__(188);
+
+	var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var FaMobile = function FaMobile(props) {
+	    return _react2.default.createElement(
+	        _reactIconBase2.default,
+	        _extends({ viewBox: '0 0 40 40' }, props),
+	        _react2.default.createElement(
+	            'g',
+	            null,
+	            _react2.default.createElement('path', { d: 'm21.9 31.4q0-0.7-0.6-1.2t-1.2-0.6-1.3 0.6-0.5 1.2 0.5 1.3 1.3 0.5 1.2-0.5 0.6-1.3z m4.6-3.5v-15.8q0-0.2-0.2-0.5t-0.5-0.2h-11.4q-0.3 0-0.5 0.2t-0.3 0.5v15.8q0 0.2 0.3 0.5t0.5 0.2h11.4q0.3 0 0.5-0.2t0.2-0.5z m-4.3-19q0-0.3-0.3-0.3h-3.6q-0.4 0-0.4 0.3t0.4 0.4h3.6q0.3 0 0.3-0.4z m6.4-0.3v22.8q0 1.2-0.8 2t-2 0.9h-11.4q-1.2 0-2.1-0.9t-0.8-2v-22.8q0-1.2 0.8-2t2.1-0.9h11.4q1.1 0 2 0.9t0.8 2z' })
+	        )
+	    );
+	};
+
+	exports.default = FaMobile;
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -24974,15 +25090,15 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _webApp_Back_Container = __webpack_require__(212);
+	var _webApp_Back_Container = __webpack_require__(214);
 
 	var _webApp_Back_Container2 = _interopRequireDefault(_webApp_Back_Container);
 
-	var _webApp_Top_Container = __webpack_require__(214);
+	var _webApp_Top_Container = __webpack_require__(216);
 
 	var _webApp_Top_Container2 = _interopRequireDefault(_webApp_Top_Container);
 
-	var _webApp_Emergency_Container = __webpack_require__(216);
+	var _webApp_Emergency_Container = __webpack_require__(218);
 
 	var _webApp_Emergency_Container2 = _interopRequireDefault(_webApp_Emergency_Container);
 
@@ -25015,7 +25131,7 @@
 	module.exports = Footer;
 
 /***/ },
-/* 212 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25024,7 +25140,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _webApp_Back = __webpack_require__(213);
+	var _webApp_Back = __webpack_require__(215);
 
 	var _webApp_Back2 = _interopRequireDefault(_webApp_Back);
 
@@ -25049,7 +25165,7 @@
 	module.exports = Back_Container;
 
 /***/ },
-/* 213 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25071,7 +25187,7 @@
 	module.exports = Back;
 
 /***/ },
-/* 214 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25080,7 +25196,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _webApp_Top = __webpack_require__(215);
+	var _webApp_Top = __webpack_require__(217);
 
 	var _webApp_Top2 = _interopRequireDefault(_webApp_Top);
 
@@ -25105,7 +25221,7 @@
 	module.exports = Top_Container;
 
 /***/ },
-/* 215 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25127,7 +25243,7 @@
 	module.exports = Top;
 
 /***/ },
-/* 216 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25136,7 +25252,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _webApp_Emergency = __webpack_require__(217);
+	var _webApp_Emergency = __webpack_require__(219);
 
 	var _webApp_Emergency2 = _interopRequireDefault(_webApp_Emergency);
 
@@ -25165,7 +25281,7 @@
 	module.exports = Emergency_Container;
 
 /***/ },
-/* 217 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25187,7 +25303,7 @@
 	module.exports = Emergency;
 
 /***/ },
-/* 218 */
+/* 220 */
 /***/ function(module, exports) {
 
 	"use strict";

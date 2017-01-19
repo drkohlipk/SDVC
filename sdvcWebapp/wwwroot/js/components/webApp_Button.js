@@ -5,7 +5,7 @@ function Button(props) {
 		return (
 			<div id="btn-hldr">
 				<button className="btn btn-pop" onClick={props.onClick} value={props.val}>{props.children}</button>
-				<span className="info">&#8505;<span className="hoverable">{props.desc}</span></span>
+				<span className="info"><span className="infoI">&#8505;</span><span className="hoverable">{props.desc}</span></span>
 			</div>
 		);
 	} else {

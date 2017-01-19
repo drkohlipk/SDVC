@@ -2,7 +2,8 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: sans-serif;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
 }
 
 main {
@@ -93,7 +94,6 @@ p, h6 {
 	width: 70%;
 	height: 2.5em;
 	font-size: 1em;
-	font-weight: bold;
 	text-decoration: none;
 	border: none;
 	border-radius: 5px;
@@ -112,17 +112,21 @@ p, h6 {
 }
 
 .btn-imp {
-	background: linear-gradient(lightgray, #ac1f23 30%);
+	background: #ac1f23;
 	color: white;
-	padding: 1.5px;
 	width: 1.3em;
 	height: 1.3em;
 	margin: 0;
 	text-align: center;
 }
 
+.btn-imp > span {
+	position: relative;
+	top: -2px;
+}
+
 .btn-pop {
-	background: linear-gradient(lightgray, #1d3666 30%);
+	background: #1d3666;
 	color: white;
 	padding: 3px;
 	text-align: center;
@@ -199,10 +203,16 @@ span.info {
 	border: 1px solid gray;
 	border-radius: 50%;
 	box-shadow: 1px 1px 5px gray;
+	padding: 0;
 	position: relative;
 	text-align: center;
 	display: inline-block;
     cursor: pointer;
+}
+
+span.infoI {
+	position: relative;
+	top: -3px;
 }
 
 span.hoverable {
@@ -256,7 +266,7 @@ hr {
 hr:after {
     display: inline-block;
     position: relative;
-    top: -0.4em;
+    top: -0.7em;
     font-size: 1.5em;
     padding: 0 0.25em;
 	content: url("../images/Small_logo.png");
@@ -275,12 +285,8 @@ hr:after {
 #vso-hldr {
 	margin-top: 20px;
 	margin-bottom: 20px;
-	max-height: 400px;
+	max-height: 360px;
 	overflow-y: auto;
-}
-
-.vso-top {
-	margin-bottom: 20px;
 }
 
 .vso:last-child hr {
@@ -291,6 +297,7 @@ hr:after {
 	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
+	height: auto;
 }
 
 .vso > hr {
@@ -301,18 +308,53 @@ hr:after {
 	content: none;
 }
 
-.vso-top > img {
+.vso-top {
+	margin-top: 10px;
+}
+
+.vsoPicSide {
+	display: inline-block;
+	vertical-align: top;
+	font-size: .7em;
+	height: 75px;
+}
+
+.vsoPicSide > img {
+	margin-top: 10px;
+	margin-left: 50px;
+	display: block;
 	width: 75px;
 	height: auto;
-	margin-left: 50px;
-	margin-top: 10px;
+}
+
+.phoneIcon {
+	margin-left: -4px;
+}
+
+.call > a, .phoneIcon {
 	display: inline-block;
+	vertical-align: bottom;
+}
+
+.share {
+	margin-top: 10px;
+	margin-left: 43px;
+}
+
+.shareIcon {
+	display: inline-block;
+	vertical-align: bottom;
+	margin: 5px 4px 0 5px;
+}
+
+.shareStuff > span {
+	display: inline-block;
+	vertical-align: bottom;
 }
 
 .vso-container {
 	display: inline-block;
 	vertical-align: top;
-	margin-left: 20px;
 }
 
 .vso-container > h2 {
@@ -351,7 +393,6 @@ hr:after {
 .kw-name {
 	margin-left: 5px;
 }
-
 
 .react-autosuggest__container {
   position: relative;
@@ -418,6 +459,7 @@ hr:after {
 }
 
 #callBox {
+	color: #1d3666;
 	display: block;
 	text-align: center;
 	font-size: 14px;
