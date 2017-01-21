@@ -21739,14 +21739,8 @@
 		handleClick: function handleClick() {
 			var app = document.getElementById('app');
 			var overlay = document.getElementById('overlay');
-			if (overlay.style.display == "block") {
-				overlay.style.display = "none";
-				app.style.display = "none";
-			} else {
-				overlay.style.opacity = .8;
-				overlay.style.display = "block";
-				app.style.display = "block";
-			}
+			overlay.style.display = "none";
+			app.style.display = "none";
 		},
 
 		render: function render() {

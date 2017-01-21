@@ -6,9 +6,15 @@
 	font-weight: 400;
 }
 
+body {
+	background-image: url('../images/Website.png');
+	background-repeat: no-repeat;
+	background-position: top;
+	background-size: cover;
+}
+
 main {
 	border: 1px solid gray;
-	border-radius: 5px;
 	background-color: #fcfcfc;
 	box-shadow: 1px 1px 5px gray;
 	margin: 60px auto;
@@ -16,7 +22,6 @@ main {
 }
 
 header {
-	background: linear-gradient(#fcfcfc, lightgray 20%, #fcfcfc);
 	padding: 20px;
 }
 
@@ -147,13 +152,14 @@ p, h6 {
 
 .sep {
 	height: 8px;
-	background: linear-gradient(120deg, #1d3666 50%, white, #1d3666 80%);
+	background-color: #1d3666;
 }
 
 div#overlay {
-	display: none;
+	display: block;
 	z-index: 2;
 	background: #000;
+	opacity: .5;
 	position: fixed;
 	width: 100%;
 	height: 100%;
@@ -254,12 +260,12 @@ span.info:hover span.hoverable {
 }
 
 hr {
-	width: 100%;
+	width: 90%;
 	height: 1px;
-	margin: 30px 0;
+	margin: 30px auto;
     padding: 0;
     border: none;
-	background: -webkit-linear-gradient(left, rgba(29,54,102,0), rgba(29,54,102,.75), rgba(29,54,102,0));
+	background-color: #1d3666;
     text-align: center;
 }
 
@@ -301,7 +307,7 @@ hr:after {
 }
 
 .vso > hr {
-	margin: 10px 0;
+	margin: 10px auto;
 }
 
 .vso > hr:after {
@@ -378,7 +384,7 @@ hr:after {
 	border-radius: 5px;
 	padding: 2px;
 	font-size: .7em;
-	margin-left: 5px;
+	margin: 2px 0 0 5px;
 }
 
 #kw-hldr .kw:first-child {
