@@ -9,6 +9,7 @@ San Diego Veterans Coalition (SDVC) is a non-profit Veteran Service Organization
 This project has a back-end using C#/ASP.NET and a front-end using React.js.  Currently, only the web-assistant has been completed using hard-coded data.  The site itself will be a social media site connecting Veterans with VSOs.  This project will be evolving as work continues with SDVC.
 
 Wireframes can be viewed at: https://xd.adobe.com/view/dfe29054-78e1-4ebf-bb84-b1b2276677c6/
+
 Jumbotron video can be viewed at: https://vimeo.com/200093579
 
 Thanks for visiting!
